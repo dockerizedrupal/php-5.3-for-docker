@@ -12,9 +12,6 @@ RUN rm -rf /tmp/*
 
 VOLUME ["/data"]
 
-EXPOSE 5217
-EXPOSE 5328
-EXPOSE 5431
-EXPOSE 5515
+EXPOSE 9000
 
 ENTRYPOINT ["/bin/bash", "-l", "-c", "/run.sh"]

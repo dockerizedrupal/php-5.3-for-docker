@@ -10,8 +10,6 @@ RUN chmod +x /tmp/build/build.sh
 RUN /tmp/build/build.sh
 RUN rm -rf /tmp/*
 
-VOLUME ["/data"]
-
-EXPOSE 9000
+EXPOSE 5328
 
 ENTRYPOINT ["/bin/bash", "-l", "-c", "/run.sh"]

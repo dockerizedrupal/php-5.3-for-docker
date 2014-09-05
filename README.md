@@ -1,21 +1,20 @@
 docker-php-5.3.28
 =================
 
-PHP 5.3.28
-----------
+Run the container
+-----------------
 
-### Configuration file (php.ini) location
+    sudo docker run \
+      --name php5328 \
+      --net host \
+      --volumes-from apache \
+      -d \
+      simpledrupalcloud/php:5.3.28
 
-    /opt/phpfarm/inst/php-5.3.28/lib/php.ini
+Build the image yourself
+------------------------
 
-### PHP-FPM (FastCGI Process Manager)
-
-Listening on port 9000
-
-#### Configuration file (php-fpm.conf) location
-
-    /opt/phpfarm/inst/php-5.3.28/etc/php-fpm.conf
-
-### Extensions
-
-#### Xdebug
+    git clone http://git.simpledrupalcloud.com/simpledrupalcloud/docker-php.git docker-php
+    cd docker-php
+    git checkout 5.3.28
+    sudo docker build -t php:5.3.28 .

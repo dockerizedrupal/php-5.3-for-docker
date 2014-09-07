@@ -91,14 +91,14 @@ class php {
     ensure => present,
     source => '/tmp/build/opt/phpfarm/inst/php-5.3.28/etc/php-fpm.conf',
     mode => 644,
-    require => Exec['/opt/phpfarm/src/compile.sh 5.3.28 2']
+    require => Exec['/opt/phpfarm/src/compile.sh 5.3.28']
   }
 
   file { '/opt/phpfarm/inst/php-5.3.28/lib/php.ini':
     ensure => present,
     source => '/tmp/build/opt/phpfarm/inst/php-5.3.28/lib/php.ini',
     mode => 644,
-    require => Exec['/opt/phpfarm/src/compile.sh 5.3.28 2']
+    require => Exec['/opt/phpfarm/src/compile.sh 5.3.28']
   }
 
   file { '/etc/profile.d/phpfarm.sh':

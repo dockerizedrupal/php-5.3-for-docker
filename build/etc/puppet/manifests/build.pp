@@ -87,18 +87,13 @@ class php {
     require => File['/opt/phpfarm/src/custom-options-5.3.28.sh']
   }
 
-  file { '/opt/phpfarm/src/custom-options-5.3.28.sh 2':
-    path => '/opt/phpfarm/src/custom-options-5.3.28.sh',
-    ensure => present,
+  File['/opt/phpfarm/src/custom-options-5.3.28.sh'] {
     source => '/tmp/build/opt/phpfarm/src/custom-options-5.3.28-fpm.sh',
-    mode => 755,
-    require => Class['phpfarm']
+    require => Exec['/opt/phpfarm/src/compile.sh 5.3.28']
   }
 
-  exec { '/opt/phpfarm/src/compile.sh 5.3.28 2':
-    command => '/opt/phpfarm/src/compile.sh 5.3.28',
-    timeout => 0,
-    require => File['/opt/phpfarm/src/custom-options-5.3.28.sh 2']
+  Exec['/opt/phpfarm/src/compile.sh 5.3.28'] {
+    require => File['/opt/phpfarm/src/custom-options-5.3.28.sh']
   }
 
   file { '/opt/phpfarm/inst/php-5.3.28/etc/php-fpm.conf':

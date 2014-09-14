@@ -12,8 +12,8 @@ Run the container
       -d \
       simpledrupalcloud/php:5.3.28
 
-Build the image yourself
-------------------------
+Build the image
+---------------
 
     git clone http://git.simpledrupalcloud.com/simpledrupalcloud/docker-php.git docker-php
     cd docker-php

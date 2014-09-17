@@ -76,23 +76,39 @@ class php {
   include php_supervisor
   include php_extension_xdebug
 
-  file { '/phpfarm/src/custom-options-5.3.28.sh':
+  file { 'Copy custom options (CGI)':
+    path => '/phpfarm/src/custom-options-5.3.28.sh',
     ensure => present,
-    source => '/tmp/build/phpfarm/src/custom-options-5.3.28.sh',
+    source => '/tmp/build/phpfarm/src/custom-options-5.3.28-cgi.sh',
     mode => 755,
     require => Class['phpfarm']
   }
 
-  exec { '/phpfarm/src/compile.sh 5.3.28':
+  exec { 'Compile PHP (CGI)':
+    command => '/phpfarm/src/compile.sh 5.3.28',
     timeout => 0,
-    require => File['/phpfarm/src/custom-options-5.3.28.sh']
+    require => File['Copy custom options (CGI)']
+  }
+
+  file { 'Copy custom options (FPM)':
+    path => '/phpfarm/src/custom-options-5.3.28.sh',
+    ensure => present,
+    source => '/tmp/build/phpfarm/src/custom-options-5.3.28.sh',
+    mode => 755,
+    require => Exec['Compile PHP (CGI)']
+  }
+
+  exec { 'Compile PHP (FPM)':
+    command => '/phpfarm/src/compile.sh 5.3.28',
+    timeout => 0,
+    require => File['Copy custom options (FPM)']
   }
 
   file { '/phpfarm/inst/php-5.3.28/etc/php-fpm.conf':
     ensure => present,
     source => '/tmp/build/phpfarm/inst/php-5.3.28/etc/php-fpm.conf',
     mode => 644,
-    require => Exec['/phpfarm/src/compile.sh 5.3.28']
+    require => Exec['Compile PHP (FPM)']
   }
 
   file { '/phpfarm/inst/php-5.3.28/lib/php.ini':

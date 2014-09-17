@@ -77,13 +77,13 @@ class php {
   include php_extension_xdebug
 
   exec { 'Compile PHP (CGI)':
-    command => '/bin/bash -l -c "cp /tmp/build/phpfarm/src/custom-options-5.3.28-cgi.sh /phpfarm/src/custom-options-5.3.28-cgi.sh && /phpfarm/src/compile.sh 5.3.28"',
+    command => '/bin/bash -c "cp /tmp/build/phpfarm/src/custom-options-5.3.28-cgi.sh /phpfarm/src/custom-options-5.3.28-cgi.sh && /phpfarm/src/compile.sh 5.3.28"',
     timeout => 0,
     require => Class['phpfarm']
   }
 
   exec { 'Compile PHP (FPM)':
-    command => '/bin/bash -l -c "cp /tmp/build/phpfarm/src/custom-options-5.3.28.sh /phpfarm/src/custom-options-5.3.28-cgi.sh && /phpfarm/src/compile.sh 5.3.28"',
+    command => '/bin/bash -c "cp /tmp/build/phpfarm/src/custom-options-5.3.28.sh /phpfarm/src/custom-options-5.3.28-cgi.sh && /phpfarm/src/compile.sh 5.3.28"',
     timeout => 0,
     require => Exec['Compile PHP (CGI)']
   }
@@ -99,14 +99,14 @@ class php {
     ensure => present,
     source => '/tmp/build/phpfarm/inst/php-5.3.28/lib/php.ini',
     mode => 644,
-    require => Exec['/phpfarm/src/compile.sh 5.3.28']
+    require => Exec['Compile PHP (CGI)']
   }
 
   file { '/etc/profile.d/phpfarm.sh':
     ensure => present,
     source => '/tmp/build/etc/profile.d/phpfarm.sh',
     mode => 755,
-    require => Exec['/phpfarm/src/compile.sh 5.3.28']
+    require => Exec['Compile PHP (CGI)']
   }
 
   exec { '/bin/bash -l -c "switch-phpfarm 5.3.28"':

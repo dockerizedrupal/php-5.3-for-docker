@@ -82,10 +82,17 @@ class php {
     require => Class['phpfarm']
   }
 
+  file { '/phpfarm/src/php-5.3.28':
+    ensure => absent,
+    recurse => true,
+    purge => true,
+    require => Exec['Compile PHP (CGI)']
+  }
+
   exec { 'Compile PHP (FPM)':
     command => '/bin/bash -c "cp /tmp/build/phpfarm/src/custom-options-5.3.28-fpm.sh /phpfarm/src/custom-options-5.3.28.sh && /phpfarm/src/compile.sh 5.3.28"',
     timeout => 0,
-    require => Exec['Compile PHP (CGI)']
+    require => File['/phpfarm/src/php-5.3.28']
   }
 
   file { '/phpfarm/inst/php-5.3.28/etc/php-fpm.conf':

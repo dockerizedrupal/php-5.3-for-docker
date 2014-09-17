@@ -99,14 +99,14 @@ class php {
     ensure => present,
     source => '/tmp/build/phpfarm/inst/php-5.3.28/lib/php.ini',
     mode => 644,
-    require => Exec['Compile PHP (CGI)']
+    require => Exec['Compile PHP (FPM)']
   }
 
   file { '/etc/profile.d/phpfarm.sh':
     ensure => present,
     source => '/tmp/build/etc/profile.d/phpfarm.sh',
     mode => 755,
-    require => Exec['Compile PHP (CGI)']
+    require => Exec['Compile PHP (FPM)']
   }
 
   exec { '/bin/bash -l -c "switch-phpfarm 5.3.28"':

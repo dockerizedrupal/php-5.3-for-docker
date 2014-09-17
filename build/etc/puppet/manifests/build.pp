@@ -77,13 +77,13 @@ class php {
   include php_extension_xdebug
 
   exec { 'Compile PHP (CGI)':
-    command => '/bin/bash -c "cp /tmp/build/phpfarm/src/custom-options-5.3.28-cgi.sh /phpfarm/src/custom-options-5.3.28-cgi.sh && /phpfarm/src/compile.sh 5.3.28"',
+    command => '/bin/bash -c "cp /tmp/build/phpfarm/src/custom-options-5.3.28-cgi.sh /phpfarm/src/custom-options-5.3.28.sh && /phpfarm/src/compile.sh 5.3.28"',
     timeout => 0,
     require => Class['phpfarm']
   }
 
   exec { 'Compile PHP (FPM)':
-    command => '/bin/bash -c "cp /tmp/build/phpfarm/src/custom-options-5.3.28.sh /phpfarm/src/custom-options-5.3.28-cgi.sh && /phpfarm/src/compile.sh 5.3.28"',
+    command => '/bin/bash -c "cp /tmp/build/phpfarm/src/custom-options-5.3.28-fpm.sh /phpfarm/src/custom-options-5.3.28.sh && /phpfarm/src/compile.sh 5.3.28"',
     timeout => 0,
     require => Exec['Compile PHP (CGI)']
   }

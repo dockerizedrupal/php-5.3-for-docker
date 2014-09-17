@@ -5,8 +5,8 @@ node default {
     mode => 755
   }
 
-  include php
-  include php::packages
+  include ::php
+  include ::php::packages
 
   exec { 'apt-get update':
     path => ['/usr/bin'],

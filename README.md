@@ -7,7 +7,7 @@ Run the container
     CONTAINER=php53 && sudo docker run \
       --name "${CONTAINER}" \
       -h "${CONTAINER}" \
-      -p 5328:5328
+      -p 9000:9000
       -v /var/www:/var/www \
       -d \
       simpledrupalcloud/php:5.3.28
@@ -29,7 +29,7 @@ Apache directives
       AddHandler php .php
 
       Alias /php53 /var/www/php53
-      FastCgiExternalServer /var/www/php53 -host 127.0.0.1:5328 -idle-timeout 300 -pass-header Authorization
+      FastCgiExternalServer /var/www/php53 -host 127.0.0.1:9000 -idle-timeout 300 -pass-header Authorization
 
       <Location /php53>
         Order deny,allow

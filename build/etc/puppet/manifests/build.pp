@@ -121,7 +121,7 @@ node default {
     purge => true,
     force => true,
     source => '/tmp/build/etc/puppet/manifests',
-    mode => 644,
+    mode => 644
   }
 
   file { '/etc/puppet/modules':
@@ -130,7 +130,7 @@ node default {
     purge => true,
     force => true,
     source => '/tmp/build/etc/puppet/modules',
-    mode => 644,
+    mode => 644
   }
 
   file { '/run.sh':

@@ -52,18 +52,18 @@ class php_extension_xdebug {
     require => Exec['wget http://xdebug.org/files/xdebug-2.2.5.tgz']
   }
 
-  exec { 'phpize-5.3.28 xdebug':
-    command => '/phpfarm/inst/bin/phpize-5.3.28',
+  exec { 'phpize-5.3.29 xdebug':
+    command => '/phpfarm/inst/bin/phpize-5.3.29',
     cwd => '/tmp/xdebug-2.2.5',
     require => Exec['tar xzf xdebug-2.2.5.tgz']
   }
 
-  exec { '/bin/bash -l -c "cd /tmp/xdebug-2.2.5 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.28"':
-    require => Exec['phpize-5.3.28 xdebug']
+  exec { '/bin/bash -l -c "cd /tmp/xdebug-2.2.5 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29"':
+    require => Exec['phpize-5.3.29 xdebug']
   }
 
   exec { '/bin/bash -l -c "cd /tmp/xdebug-2.2.5 && make"':
-    require => Exec['/bin/bash -l -c "cd /tmp/xdebug-2.2.5 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.28"']
+    require => Exec['/bin/bash -l -c "cd /tmp/xdebug-2.2.5 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29"']
   }
 
   exec { '/bin/bash -l -c "cd /tmp/xdebug-2.2.5 && make install"':
@@ -77,27 +77,27 @@ class php {
   include php_extension_xdebug
 
   exec { 'Compile PHP (CGI)':
-    command => '/bin/bash -c "cp /tmp/build/phpfarm/src/custom-options-5.3.28-cgi.sh /phpfarm/src/custom-options-5.3.28.sh && /phpfarm/src/compile.sh 5.3.28 && rm -rf /phpfarm/src/php-5.3.28"',
+    command => '/bin/bash -c "cp /tmp/build/phpfarm/src/custom-options-5.3.29-cgi.sh /phpfarm/src/custom-options-5.3.29.sh && /phpfarm/src/compile.sh 5.3.29 && rm -rf /phpfarm/src/php-5.3.29"',
     timeout => 0,
     require => Class['phpfarm']
   }
 
   exec { 'Compile PHP (FPM)':
-    command => '/bin/bash -c "cp /tmp/build/phpfarm/src/custom-options-5.3.28-fpm.sh /phpfarm/src/custom-options-5.3.28.sh && /phpfarm/src/compile.sh 5.3.28 && rm -rf /phpfarm/src/php-5.3.28"',
+    command => '/bin/bash -c "cp /tmp/build/phpfarm/src/custom-options-5.3.29-fpm.sh /phpfarm/src/custom-options-5.3.29.sh && /phpfarm/src/compile.sh 5.3.29 && rm -rf /phpfarm/src/php-5.3.29"',
     timeout => 0,
     require => Exec['Compile PHP (CGI)']
   }
 
-  file { '/phpfarm/inst/php-5.3.28/etc/php-fpm.conf':
+  file { '/phpfarm/inst/php-5.3.29/etc/php-fpm.conf':
     ensure => present,
-    source => '/tmp/build/phpfarm/inst/php-5.3.28/etc/php-fpm.conf',
+    source => '/tmp/build/phpfarm/inst/php-5.3.29/etc/php-fpm.conf',
     mode => 644,
     require => Exec['Compile PHP (FPM)']
   }
 
-  file { '/phpfarm/inst/php-5.3.28/lib/php.ini':
+  file { '/phpfarm/inst/php-5.3.29/lib/php.ini':
     ensure => present,
-    source => '/tmp/build/phpfarm/inst/php-5.3.28/lib/php.ini',
+    source => '/tmp/build/phpfarm/inst/php-5.3.29/lib/php.ini',
     mode => 644,
     require => Exec['Compile PHP (FPM)']
   }
@@ -109,7 +109,7 @@ class php {
     require => Exec['Compile PHP (FPM)']
   }
 
-  exec { '/bin/bash -l -c "switch-phpfarm 5.3.28"':
+  exec { '/bin/bash -l -c "switch-phpfarm 5.3.29"':
     require => File['/etc/profile.d/phpfarm.sh']
   }
 }

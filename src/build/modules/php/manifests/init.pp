@@ -16,7 +16,7 @@ class php {
 
   file { '/phpfarm/src/custom/options-5.3.29.sh':
     ensure => present,
-    source => 'puppet:///modules/php/phpfarm/src/custom/options-5.3.29-fpm.sh',
+    source => 'puppet:///modules/php/phpfarm/src/custom/options-5.3.29.sh',
     mode => 755,
     require => Exec['tar xzf php-5.3.29.tar.gz']
   }

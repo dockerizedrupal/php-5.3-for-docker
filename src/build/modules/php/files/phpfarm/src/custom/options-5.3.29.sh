@@ -29,7 +29,7 @@ configoptions="--with-libdir=/lib/x86_64-linux-gnu \
   --with-pspell \
 "
 
-if [ -n "${PHPFPM}" ]; then
+if [ "${PHPFPM}" = 1 ]; then
   configoptions="${configoptions} \
   --enable-fpm \
 "

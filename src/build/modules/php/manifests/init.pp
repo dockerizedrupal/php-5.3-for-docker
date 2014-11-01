@@ -26,26 +26,31 @@ class php {
     require => File['/phpfarm/src/custom/options-5.3.29.sh']
   }
 
+  exec { '/bin/bash -c "PHPFPM=1 && /phpfarm/src/main.sh 5.3.29"':
+    timeout => 0,
+    require => Exec['/phpfarm/src/main.sh 5.3.29']
+  }
+
   exec { 'rm -rf /phpfarm/src/php-5.3.29':
     path => ['/bin'],
-    require => Exec['/phpfarm/src/main.sh 5.3.29']
+    require => Exec['/bin/bash -c "PHPFPM=1 && /phpfarm/src/main.sh 5.3.29"']
   }
 
   file { '/phpfarm/inst/php-5.3.29/etc/php-fpm.conf':
     ensure => present,
     source => 'puppet:///modules/php/phpfarm/inst/php-5.3.29/etc/php-fpm.conf',
     mode => 644,
-    require => Exec['/phpfarm/src/main.sh 5.3.29']
+    require => Exec['/bin/bash -c "PHPFPM=1 && /phpfarm/src/main.sh 5.3.29"']
   }
 
   file { '/phpfarm/inst/php-5.3.29/lib/php.ini':
     ensure => present,
     source => 'puppet:///modules/php/phpfarm/inst/php-5.3.29/lib/php.ini',
     mode => 644,
-    require => Exec['/phpfarm/src/main.sh 5.3.29']
+    require => Exec['/bin/bash -c "PHPFPM=1 && /phpfarm/src/main.sh 5.3.29"']
   }
 
   exec { '/bin/bash -l -c "switch-phpfarm 5.3.29"':
-    require => Exec['/phpfarm/src/main.sh 5.3.29']
+    require => Exec['/bin/bash -c "PHPFPM=1 && /phpfarm/src/main.sh 5.3.29"']
   }
 }

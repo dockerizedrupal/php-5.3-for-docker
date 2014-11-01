@@ -15,13 +15,13 @@ class php {
   }
 
   exec { 'Compile PHP (CGI)':
-    command => '/bin/bash -c "cp /src/build/phpfarm/src/custom/options-5.3.29-cgi.sh /phpfarm/src/custom/options-5.3.29.sh && /phpfarm/src/main.sh 5.3.29"',
+    command => '/bin/bash -c "cp /src/build/modules/php/files/phpfarm/src/custom/options-5.3.29-cgi.sh /phpfarm/src/custom/options-5.3.29.sh && /phpfarm/src/main.sh 5.3.29"',
     timeout => 0,
     require => Exec['tar xzf php-5.3.29.tar.gz']
   }
 
   exec { 'Compile PHP (FPM)':
-    command => '/bin/bash -c "cp /src/build/phpfarm/src/custom/options-5.3.29-fpm.sh /phpfarm/src/custom/options-5.3.29.sh && /phpfarm/src/main.sh 5.3.29"',
+    command => '/bin/bash -c "cp /src/build/modules/php/files/phpfarm/src/custom/options-5.3.29-fpm.sh /phpfarm/src/custom/options-5.3.29.sh && /phpfarm/src/main.sh 5.3.29"',
     timeout => 0,
     require => Exec['Compile PHP (CGI)']
   }

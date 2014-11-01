@@ -1,6 +1,5 @@
 configoptions="--with-libdir=/lib/x86_64-linux-gnu \
   --disable-debug \
-  --enable-apc \
   --enable-memcached \
   --enable-xdebug \
   --enable-cgi \

@@ -1,6 +1,5 @@
 configoptions="--with-libdir=/lib/x86_64-linux-gnu \
   --disable-debug \
-  --enable-cgi \
   --enable-fpm \
   --enable-gd-native-ttf \
   --enable-exif \

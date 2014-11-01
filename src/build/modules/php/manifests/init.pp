@@ -3,8 +3,8 @@ class php {
   require php::phpfarm
   require php::supervisor
 
-  recuire php::cgi
-  recuire php::fpm
+  require php::cgi
+  require php::fpm
 
   file { '/phpfarm/inst/php-5.3.29/etc/php-fpm.conf':
     ensure => present,

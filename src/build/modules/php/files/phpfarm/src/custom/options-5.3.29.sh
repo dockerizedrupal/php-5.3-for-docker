@@ -28,3 +28,9 @@ configoptions="--with-libdir=/lib/x86_64-linux-gnu \
   --with-gettext \
   --with-pspell \
 "
+
+if [ -n "${PHPFPM}" ]; then
+  configoptions="${configoptions} \
+  --enable-fpm \
+"
+fi

@@ -1,0 +1,7 @@
+php53:
+  image: simpledrupalcloud/php:5.3-dev
+  hostname: php53
+  ports:
+    - "9000:9000"
+  volumes:
+    - /var/www:/var/www

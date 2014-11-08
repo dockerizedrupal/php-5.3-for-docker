@@ -8,7 +8,7 @@ A [Docker](https://docker.com/) container for [PHP](http://php.net/) version 5.3
 
 Using the `docker` command:
 
-    CONTAINER="php52" && sudo docker run \
+    CONTAINER="php53" && sudo docker run \
       --name "${CONTAINER}" \
       -h "${CONTAINER}" \
       -p 9000:9000 \

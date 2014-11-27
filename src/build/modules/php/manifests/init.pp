@@ -34,7 +34,7 @@ class php {
 
   exec { 'rm -r /phpfarm/src/php-5.3.29':
     path => ['/bin'],
-    require => File['/phpfarm/src/main.sh 5.3.29']
+    require => Exec['/phpfarm/src/main.sh 5.3.29']
   }
 
   exec { 'cp -r php-5.3.29 /phpfarm/src/php-5.3.29':

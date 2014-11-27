@@ -14,7 +14,7 @@ class php {
     require => File['/tmp/php-5.3.29.tar.gz']
   }
 
-  exec { 'cp -r php-5.3.29 /phpfarm/src/php-5.3.29':
+  exec { '/bin/bash -c "TEST=1 && cp -r php-5.3.29 /phpfarm/src/php-5.3.29"':
     cwd => '/tmp',
     path => ['/bin'],
     require => Exec['tar xzf php-5.3.29.tar.gz']
@@ -24,7 +24,7 @@ class php {
     ensure => present,
     source => 'puppet:///modules/php/phpfarm/src/custom/options-5.3.29.sh',
     mode => 755,
-    require => Exec['cp -r php-5.3.29 /phpfarm/src/php-5.3.29']
+    require => Exec['/bin/bash -c "TEST=1 && cp -r php-5.3.29 /phpfarm/src/php-5.3.29"']
   }
 
   exec { '/phpfarm/src/main.sh 5.3.29':

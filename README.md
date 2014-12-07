@@ -8,17 +8,17 @@ A [Docker](https://docker.com/) container for [PHP](http://php.net/) version 5.3
 
 Using the `docker` command:
 
-    CONTAINER="data" && sudo docker run \
+    CONTAINER="httpddata" && sudo docker run \
       --name "${CONTAINER}" \
       -h "${CONTAINER}" \
-      -v /var/www:/var/www \
+      -v /httpd/data \
       simpledrupalcloud/data:dev
 
     CONTAINER="php" && sudo docker run \
       --name "${CONTAINER}" \
       -h "${CONTAINER}" \
       -p 9000:9000 \
-      --volumes-from data \
+      --volumes-from httpddata \
       -d \
       simpledrupalcloud/php:5.3-dev
       

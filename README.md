@@ -2,9 +2,7 @@
 
 A [Docker](https://docker.com/) container for [PHP](http://php.net/) version 5.3.29 that runs PHP in FPM (FastCGI Process Manager) mode.
 
-## PHP 5.3.29 (DEVELOPMENT BRANCH)
-
-### Run the container
+## Run the container
 
 Using the `docker` command:
 
@@ -30,7 +28,7 @@ Using the `fig` command
       && git checkout 5.3-dev \
       && sudo fig up
 
-### Build the image
+## Build the image
 
     TMP="$(mktemp -d)" \
       && git clone http://git.simpledrupalcloud.com/simpledrupalcloud/docker-php.git "${TMP}" \
@@ -39,7 +37,7 @@ Using the `fig` command
       && sudo docker build -t simpledrupalcloud/php:5.3-dev . \
       && cd -
 
-### Apache directives
+## Apache directives
 
     <IfModule mod_fastcgi.c>
       AddHandler php .php

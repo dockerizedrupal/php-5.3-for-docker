@@ -25,8 +25,8 @@ class php::extension::blackfire {
   }
 
   package {[
-    'blackfire-agent'
-  ]:
+      'blackfire-agent'
+    ]:
     ensure => present,
     require => Exec['apt-get update']
   }

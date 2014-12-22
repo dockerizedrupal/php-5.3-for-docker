@@ -17,6 +17,6 @@ class php {
 
   file { '/phpfarm/inst/php-5.3.29/lib/php.ini':
     ensure => present,
-    content => template('php/php.ini')
+    content => template('php/php.ini.erb')
   }
 }

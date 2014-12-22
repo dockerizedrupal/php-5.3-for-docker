@@ -5,4 +5,5 @@ class php::extensions {
   include php::extension::memcached
   include php::extension::redis
   include php::extension::blackfire
+  include php::extension::apcu
 }

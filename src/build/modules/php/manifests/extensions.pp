@@ -6,4 +6,5 @@ class php::extensions {
   include php::extension::redis
   include php::extension::blackfire
   include php::extension::apcu
+  include php::extension::zendopcache
 }

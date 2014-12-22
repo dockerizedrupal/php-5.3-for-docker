@@ -5,14 +5,9 @@ class php::extension::blackfire {
     path => ['/bin']
   }
 
-  exec { 'mkdir -p /phpfarm/inst/php-5.3.29/lib/php/extensions/no-debug-non-zts-20090626':
-    path => ['/bin']
-  }
-
   file { '/phpfarm/inst/php-5.3.29/lib/php/extensions/no-debug-non-zts-20090626/blackfire-php-linux_amd64-php-53.so':
     ensure => present,
-    source => 'puppet:///modules/php/tmp/blackfire-php-linux_amd64-php-53.so',
-    require => Exec['mkdir -p /phpfarm/inst/php-5.3.29/lib/php/extensions/no-debug-non-zts-20090626']
+    source => 'puppet:///modules/php/tmp/blackfire-php-linux_amd64-php-53.so'
   }
 
   exec { '/bin/su - root -c "curl -s https://packagecloud.io/gpg.key | apt-key add -"': }

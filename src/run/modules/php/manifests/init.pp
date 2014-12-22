@@ -14,4 +14,9 @@ class php {
   if $redis_host {
     include php::redis
   }
+
+  file { '/phpfarm/inst/php-5.3.29/lib/php.ini':
+    ensure => present,
+    content => template('php/php.ini.erb')
+  }
 }

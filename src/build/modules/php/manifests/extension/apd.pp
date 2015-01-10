@@ -26,22 +26,22 @@ class php::extension::apd {
 
   exec { 'phpize-5.3.29 apd':
     command => '/phpfarm/inst/bin/phpize-5.3.29',
-    cwd => '/tmp/pecl-apd-master',
+    cwd => '/tmp/apd-1.0.1',
     require => Exec['patch < /tmp/file.patch']
   }
 
-  exec { '/bin/su - root -mc "cd /tmp/pecl-apd-master && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29"':
+  exec { '/bin/su - root -mc "cd /tmp/apd-1.0.1 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29"':
     timeout => 0,
     require => Exec['phpize-5.3.29 apd']
   }
 
-  exec { '/bin/su - root -mc "cd /tmp/pecl-apd-master && make"':
+  exec { '/bin/su - root -mc "cd /tmp/apd-1.0.1 && make"':
     timeout => 0,
-    require => Exec['/bin/su - root -mc "cd /tmp/pecl-apd-master && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29"']
+    require => Exec['/bin/su - root -mc "cd /tmp/apd-1.0.1 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29"']
   }
 
-  exec { '/bin/su - root -mc "cd /tmp/pecl-apd-master && make install"':
+  exec { '/bin/su - root -mc "cd /tmp/apd-1.0.1 && make install"':
     timeout => 0,
-    require => Exec['/bin/su - root -mc "cd /tmp/pecl-apd-master && make"']
+    require => Exec['/bin/su - root -mc "cd /tmp/apd-1.0.1 && make"']
   }
 }

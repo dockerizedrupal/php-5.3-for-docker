@@ -1,0 +1,47 @@
+class php::extension::apd {
+  require php
+
+  file { '/tmp/apd-1.0.1.tgz':
+    ensure => present,
+    source => 'puppet:///modules/php/tmp/apd-1.0.1.tgz'
+  }
+
+  exec { 'tar xzf apd-1.0.1.tgz':
+    cwd => '/tmp',
+    path => ['/bin'],
+    require => File['/tmp/apd-1.0.1.tgz']
+  }
+
+  file { '/tmp/file.patch':
+    ensure => present,
+    source => 'puppet:///modules/php/tmp/file.patch',
+    require => Exec['tar xzf apd-1.0.1.tgz']
+  }
+
+  exec { 'patch < /tmp/file.patch':
+    cwd => '/tmp/apd-1.0.1',
+    path => ['/usr/bin'],
+    require => File['/tmp/file.patch']
+  }
+
+  exec { 'phpize-5.3.29 apd':
+    command => '/phpfarm/inst/bin/phpize-5.3.29',
+    cwd => '/tmp/pecl-apd-master',
+    require => Exec['patch < /tmp/file.patch']
+  }
+
+  exec { '/bin/su - root -mc "cd /tmp/pecl-apd-master && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29"':
+    timeout => 0,
+    require => Exec['phpize-5.3.29 apd']
+  }
+
+  exec { '/bin/su - root -mc "cd /tmp/pecl-apd-master && make"':
+    timeout => 0,
+    require => Exec['/bin/su - root -mc "cd /tmp/pecl-apd-master && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29"']
+  }
+
+  exec { '/bin/su - root -mc "cd /tmp/pecl-apd-master && make install"':
+    timeout => 0,
+    require => Exec['/bin/su - root -mc "cd /tmp/pecl-apd-master && make"']
+  }
+}

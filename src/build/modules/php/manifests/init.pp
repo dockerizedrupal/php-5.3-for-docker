@@ -3,6 +3,10 @@ class php {
   require php::phpfarm
   require php::supervisor
 
+  exec { 'mkdir -p /phpfarm/inst/php-5.3.29/etc/conf.d':
+    path => ['/bin']
+  }
+
   exec { 'mkdir -p /phpfarm/inst/php-5.3.29/lib/php/extensions/no-debug-non-zts-20090626':
     path => ['/bin']
   }

@@ -4,6 +4,10 @@ class php::drush {
   require php::composer
   require php::drush::packages
 
+  exec { 'mkdir /root/.drush':
+    path => ['/bin']]
+  }
+
   file { '/tmp/drush-5.11.0.tar.gz':
     ensure => present,
     source => 'puppet:///modules/php/tmp/drush-5.11.0.tar.gz'

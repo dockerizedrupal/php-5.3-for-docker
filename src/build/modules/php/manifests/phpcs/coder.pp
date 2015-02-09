@@ -1,5 +1,6 @@
 class php::phpcs::coder {
   require php::phpcs
+  require php::drush
 
   file { '/tmp/coder-7.x-2.4.tar.gz':
     ensure => present,

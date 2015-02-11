@@ -36,4 +36,13 @@ class php::freetds {
     path => ['/bin'],
     require => Exec['/bin/su - root -mc "cd /tmp/freetds-0.91 && make install"']
   }
+
+  exec { '/bin/bash -c "echo \'include /usr/local/freetds/lib\' >> /etc/ld.so.conf"':
+    require => Exec['/bin/su - root -mc "cd /tmp/freetds-0.91 && make install"']
+  }
+
+  exec { 'ldconfig -v':
+    path => ['/sbin'],
+    require => Exec['/bin/su - root -mc "cd /tmp/freetds-0.91 && make install"']
+  }
 }

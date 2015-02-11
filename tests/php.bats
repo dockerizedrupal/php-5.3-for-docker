@@ -44,6 +44,10 @@ teardown() {
   docker exec "${CONTAINER}" /bin/su - root -mc "php -m | grep 'igbinary'"
 }
 
+@test "php: mssql" {
+  docker exec "${CONTAINER}" /bin/su - root -mc "php -m | grep 'mssql'"
+}
+
 @test "drush" {
   docker exec "${CONTAINER}" /bin/su - root -mc "drush status"
 }

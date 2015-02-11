@@ -41,9 +41,9 @@ class php::freetds {
     require => Exec['cp src/tds/.libs/libtds.a /usr/local/freetds/lib']
   }
 
-  file { '/usr/lib64/libsybdb.so':
+  file { '/usr/lib/x86_64-linux-gnu/libsybdb.so':
     ensure => link,
-    target => '/usr/lib64/libsybdb.so.5',
+    target => '/usr/lib/x86_64-linux-gnu/libsybdb.so.5',
     require => Exec['/bin/bash -c "echo \'include /usr/local/freetds/lib\' >> /etc/ld.so.conf"']
   }
 

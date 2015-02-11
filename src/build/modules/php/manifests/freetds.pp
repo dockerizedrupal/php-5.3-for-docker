@@ -34,15 +34,21 @@ class php::freetds {
   exec { 'cp src/tds/.libs/libtds.a /usr/local/freetds/lib':
     cwd => '/tmp/freetds-0.91',
     path => ['/bin'],
-    require => Exec['/bin/su - root -mc "cd /tmp/freetds-0.91 && make install"']
+    require => Exec['cp include/tds.h /usr/local/freetds/include']
   }
 
   exec { '/bin/bash -c "echo \'include /usr/local/freetds/lib\' >> /etc/ld.so.conf"':
-    require => Exec['/bin/su - root -mc "cd /tmp/freetds-0.91 && make install"']
+    require => Exec['cp src/tds/.libs/libtds.a /usr/local/freetds/lib']
+  }
+
+  file { '/usr/lib64/libsybdb.so':
+    ensure => link,
+    target => '/usr/lib64/libsybdb.so.5',
+    require => Exec['/bin/bash -c "echo \'include /usr/local/freetds/lib\' >> /etc/ld.so.conf"']
   }
 
   exec { 'ldconfig -v':
     path => ['/sbin'],
-    require => Exec['/bin/su - root -mc "cd /tmp/freetds-0.91 && make install"']
+    require => File['/usr/lib64/libsybdb.so']
   }
 }

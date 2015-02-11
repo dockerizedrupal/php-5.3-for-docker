@@ -49,6 +49,6 @@ class php::freetds {
 
   exec { 'ldconfig -v':
     path => ['/sbin'],
-    require => File['/usr/lib64/libsybdb.so']
+    require => File['/usr/lib/x86_64-linux-gnu/libsybdb.so']
   }
 }

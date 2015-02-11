@@ -2,6 +2,7 @@ class php {
   require php::packages
   require php::phpfarm
   require php::supervisor
+  require php::freetds
 
   exec { 'mkdir -p /phpfarm/inst/php-5.3.29/etc/conf.d':
     path => ['/bin']

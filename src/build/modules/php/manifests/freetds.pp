@@ -4,14 +4,13 @@ class php::freetds {
     source => 'puppet:///modules/php/tmp/freetds-stable.tgz'
   }
 
-  bash_exec { 'tar xzf freetds-stable.tgz':
-    cwd => '/tmp',
+  bash_exec { 'cd /tmp && tar xzf freetds-stable.tgz':
     require => File['/tmp/freetds-stable.tgz']
   }
 
   bash_exec { 'cd /tmp/freetds-0.91 && ./configure --prefix=/usr/local/freetds --enable-msdblib':
     timeout => 0,
-    require => Bash_exec['tar xzf freetds-stable.tgz']
+    require => Bash_exec['cd /tmp && tar xzf freetds-stable.tgz']
   }
 
   bash_exec { 'cd /tmp/freetds-0.91 && make':

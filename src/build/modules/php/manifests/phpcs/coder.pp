@@ -7,13 +7,12 @@ class php::phpcs::coder {
     source => 'puppet:///modules/php/tmp/coder-7.x-2.4.tar.gz'
   }
 
-  bash_exec { 'tar xzf coder-7.x-2.4.tar.gz':
-    cwd => '/tmp',
+  bash_exec { 'cd /tmp && tar xzf coder-7.x-2.4.tar.gz':
     require => File['/tmp/coder-7.x-2.4.tar.gz']
   }
 
   bash_exec { 'mv /tmp/coder /root/.drush/coder':
-    require => Bash_exec['tar xzf coder-7.x-2.4.tar.gz']
+    require => Bash_exec['cd /tmp && tar xzf coder-7.x-2.4.tar.gz']
   }
 
   file { '/root/.composer/vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Drupal':

@@ -7,14 +7,13 @@ class php::extension::memcached {
     source => 'puppet:///modules/php/tmp/libmemcached-1.0.18.tar.gz'
   }
 
-  bash_exec { 'tar xzf libmemcached-1.0.18.tar.gz':
-    cwd => '/tmp',
+  bash_exec { 'cd /tmp && tar xzf libmemcached-1.0.18.tar.gz':
     require => File['/tmp/libmemcached-1.0.18.tar.gz']
   }
 
   bash_exec { 'cd /tmp/libmemcached-1.0.18 && ./configure':
     timeout => 0,
-    require => Bash_exec['tar xzf libmemcached-1.0.18.tar.gz']
+    require => Bash_exec['cd /tmp && tar xzf libmemcached-1.0.18.tar.gz']
   }
 
   bash_exec { 'cd /tmp/libmemcached-1.0.18 && make':
@@ -33,20 +32,17 @@ class php::extension::memcached {
     require => Bash_exec['cd /tmp/libmemcached-1.0.18 && make install']
   }
 
-  bash_exec { 'tar xzf memcached-2.2.0.tgz':
-    cwd => '/tmp',
+  bash_exec { 'cd /tmp && tar xzf memcached-2.2.0.tgz':
     require => File['/tmp/memcached-2.2.0.tgz']
   }
 
-  bash_exec { 'phpize-5.3.29 memcached':
-    command => '/phpfarm/inst/bin/phpize-5.3.29',
-    cwd => '/tmp/memcached-2.2.0',
-    require => Bash_exec['tar xzf memcached-2.2.0.tgz']
+  bash_exec { 'cd /tmp/memcached-2.2.0 && phpize-5.3.29':
+    require => Bash_exec['cd /tmp && tar xzf memcached-2.2.0.tgz']
   }
 
   bash_exec { 'cd /tmp/memcached-2.2.0 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29 --enable-memcached-igbinary':
     timeout => 0,
-    require => Bash_exec['phpize-5.3.29 memcached']
+    require => Bash_exec['cd /tmp/memcached-2.2.0 && phpize-5.3.29']
   }
 
   bash_exec { 'cd /tmp/memcached-2.2.0 && make':

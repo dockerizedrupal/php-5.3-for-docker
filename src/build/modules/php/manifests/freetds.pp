@@ -25,30 +25,29 @@ class php::freetds {
     require => Exec['/bin/bash -c "cd /tmp/freetds-0.91 && make"']
   }
 
-  exec { 'cp include/tds.h /usr/local/freetds/include':
-    cwd => '/tmp/freetds-0.91',
-    path => ['/bin'],
+  file { '/usr/lib/x86_64-linux-gnu/libsybdb.so.5':
+    ensure => link,
+    target => '/usr/lib/x86_64-linux-gnu/libsybdb.so.5',
     require => Exec['/bin/bash -c "cd /tmp/freetds-0.91 && make install"']
   }
 
-  exec { 'cp src/tds/.libs/libtds.a /usr/local/freetds/lib':
-    cwd => '/tmp/freetds-0.91',
+  exec { 'mkdir -p /usr/local/freetds/lib/x86_64-linux-gnu':
     path => ['/bin'],
-    require => Exec['cp include/tds.h /usr/local/freetds/include']
+    require => File['/usr/lib/x86_64-linux-gnu/libsybdb.so.5']
+  }
+
+  file { '/usr/local/freetds/lib/x86_64-linux-gnu/libsybdb.so':
+    ensure => link,
+    target => '/usr/lib/x86_64-linux-gnu/libsybdb.so.5',
+    require => Exec['/bin/bash -c "cd /tmp/freetds-0.91 && make install"']
   }
 
   exec { '/bin/bash -c "echo \'include /usr/local/freetds/lib\' >> /etc/ld.so.conf"':
-    require => Exec['cp src/tds/.libs/libtds.a /usr/local/freetds/lib']
-  }
-
-  file { '/usr/lib/x86_64-linux-gnu/libsybdb.so':
-    ensure => link,
-    target => '/usr/lib/x86_64-linux-gnu/libsybdb.so.5',
-    require => Exec['/bin/bash -c "echo \'include /usr/local/freetds/lib\' >> /etc/ld.so.conf"']
+    require => File['/usr/local/freetds/lib/x86_64-linux-gnu/libsybdb.so']
   }
 
   exec { 'ldconfig -v':
     path => ['/sbin'],
-    require => File['/usr/lib/x86_64-linux-gnu/libsybdb.so']
+    require => Exec['/bin/bash -c "echo \'include /usr/local/freetds/lib\' >> /etc/ld.so.conf"']
   }
 }

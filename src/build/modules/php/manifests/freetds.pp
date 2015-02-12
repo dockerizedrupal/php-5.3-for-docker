@@ -27,7 +27,7 @@ class php::freetds {
 
   file { '/usr/lib/x86_64-linux-gnu/libsybdb.so.5':
     ensure => link,
-    target => '/usr/lib/x86_64-linux-gnu/libsybdb.so.5',
+    target => '/usr/local/freetds/lib/libsybdb.so.5',
     require => Exec['/bin/bash -c "cd /tmp/freetds-0.91 && make install"']
   }
 
@@ -38,7 +38,7 @@ class php::freetds {
 
   file { '/usr/local/freetds/lib/x86_64-linux-gnu/libsybdb.so':
     ensure => link,
-    target => '/usr/lib/x86_64-linux-gnu/libsybdb.so.5',
+    target => '/usr/local/freetds/lib/libsybdb.so.5',
     require => Exec['mkdir -p /usr/local/freetds/lib/x86_64-linux-gnu']
   }
 

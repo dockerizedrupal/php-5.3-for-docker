@@ -6,30 +6,29 @@ class php::extension::zendopcache {
     source => 'puppet:///modules/php/tmp/zendopcache-7.0.3.tgz'
   }
 
-  exec { 'tar xzf zendopcache-7.0.3.tgz':
+  bash_exec { 'tar xzf zendopcache-7.0.3.tgz':
     cwd => '/tmp',
-    path => ['/bin'],
     require => File['/tmp/zendopcache-7.0.3.tgz']
   }
 
-  exec { 'phpize-5.3.29 opcache':
+  bash_exec { 'phpize-5.3.29 opcache':
     command => '/phpfarm/inst/bin/phpize-5.3.29',
     cwd => '/tmp/zendopcache-7.0.3',
-    require => Exec['tar xzf zendopcache-7.0.3.tgz']
+    require => Bash_exec['tar xzf zendopcache-7.0.3.tgz']
   }
 
-  exec { '/bin/bash -c "cd /tmp/zendopcache-7.0.3 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29"':
+  bash_exec { 'cd /tmp/zendopcache-7.0.3 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29':
     timeout => 0,
-    require => Exec['phpize-5.3.29 opcache']
+    require => Bash_exec['phpize-5.3.29 opcache']
   }
 
-  exec { '/bin/bash -c "cd /tmp/zendopcache-7.0.3 && make"':
+  bash_exec { 'cd /tmp/zendopcache-7.0.3 && make':
     timeout => 0,
-    require => Exec['/bin/bash -c "cd /tmp/zendopcache-7.0.3 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29"']
+    require => Bash_exec['cd /tmp/zendopcache-7.0.3 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29']
   }
 
-  exec { '/bin/bash -c "cd /tmp/zendopcache-7.0.3 && make install"':
+  bash_exec { 'cd /tmp/zendopcache-7.0.3 && make install':
     timeout => 0,
-    require => Exec['/bin/bash -c "cd /tmp/zendopcache-7.0.3 && make"']
+    require => Bash_exec['cd /tmp/zendopcache-7.0.3 && make']
   }
 }

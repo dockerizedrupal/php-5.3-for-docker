@@ -6,14 +6,12 @@ class php::phpcs::phpcompatibility {
     source => 'puppet:///modules/php/tmp/PHPCompatibility-master.zip'
   }
 
-  exec { 'unzip PHPCompatibility-master.zip':
+  bash_exec { 'unzip PHPCompatibility-master.zip':
     cwd => '/tmp',
-    path => ['/usr/bin'],
     require => File['/tmp/PHPCompatibility-master.zip']
   }
 
-  exec { 'mv /tmp/PHPCompatibility-master /root/.composer/vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility':
-    path => ['/bin'],
-    require => Exec['unzip PHPCompatibility-master.zip']
+  bash_exec { 'mv /tmp/PHPCompatibility-master /root/.composer/vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility':
+    require => Bash_exec['unzip PHPCompatibility-master.zip']
   }
 }

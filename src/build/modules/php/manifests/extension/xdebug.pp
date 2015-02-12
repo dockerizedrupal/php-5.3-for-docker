@@ -6,30 +6,29 @@ class php::extension::xdebug {
     source => 'puppet:///modules/php/tmp/xdebug-2.2.6.tgz'
   }
 
-  exec { 'tar xzf xdebug-2.2.6.tgz':
+  bash_exec { 'tar xzf xdebug-2.2.6.tgz':
     cwd => '/tmp',
-    path => ['/bin'],
     require => File['/tmp/xdebug-2.2.6.tgz']
   }
 
-  exec { 'phpize-5.3.29 xdebug':
+  bash_exec { 'phpize-5.3.29 xdebug':
     command => '/phpfarm/inst/bin/phpize-5.3.29',
     cwd => '/tmp/xdebug-2.2.6',
-    require => Exec['tar xzf xdebug-2.2.6.tgz']
+    require => Bash_exec['tar xzf xdebug-2.2.6.tgz']
   }
 
-  exec { '/bin/bash -c "cd /tmp/xdebug-2.2.6 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29"':
+  bash_exec { 'cd /tmp/xdebug-2.2.6 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29':
     timeout => 0,
-    require => Exec['phpize-5.3.29 xdebug']
+    require => Bash_exec['phpize-5.3.29 xdebug']
   }
 
-  exec { '/bin/bash -c "cd /tmp/xdebug-2.2.6 && make"':
+  bash_exec { 'cd /tmp/xdebug-2.2.6 && make':
     timeout => 0,
-    require => Exec['/bin/bash -c "cd /tmp/xdebug-2.2.6 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29"']
+    require => Bash_exec['cd /tmp/xdebug-2.2.6 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29']
   }
 
-  exec { '/bin/bash -c "cd /tmp/xdebug-2.2.6 && make install"':
+  bash_exec { 'cd /tmp/xdebug-2.2.6 && make install':
     timeout => 0,
-    require => Exec['/bin/bash -c "cd /tmp/xdebug-2.2.6 && make"']
+    require => Bash_exec['cd /tmp/xdebug-2.2.6 && make']
   }
 }

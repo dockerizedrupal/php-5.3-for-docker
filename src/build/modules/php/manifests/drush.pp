@@ -4,30 +4,26 @@ class php::drush {
   require php::composer
   require php::drush::packages
 
-  exec { 'mkdir /root/.drush':
-    path => ['/bin']
-  }
+  bash_exec { 'mkdir /root/.drush': }
 
   file { '/tmp/drush-6.5.0.tar.gz':
     ensure => present,
     source => 'puppet:///modules/php/tmp/drush-6.5.0.tar.gz'
   }
 
-  exec { 'tar xzf drush-6.5.0.tar.gz':
+  bash_exec { 'tar xzf drush-6.5.0.tar.gz':
     cwd => '/tmp',
-    path => ['/bin'],
     require => File['/tmp/drush-6.5.0.tar.gz']
   }
 
-  exec { 'mv drush-6.5.0 /opt/drush6':
+  bash_exec { 'mv drush-6.5.0 /opt/drush6':
     cwd => '/tmp',
-    path => ['/bin'],
-    require => Exec['tar xzf drush-6.5.0.tar.gz']
+    require => Bash_exec['tar xzf drush-6.5.0.tar.gz']
   }
 
-  exec { '/bin/bash -c "cd /opt/drush6 && composer install"':
+  bash_exec { 'cd /opt/drush6 && composer install':
     timeout => 0,
-    require => Exec['mv drush-6.5.0 /opt/drush6']
+    require => Bash_exec['mv drush-6.5.0 /opt/drush6']
   }
 
   file { '/tmp/drush-7.0.0-alpha8.tar.gz':
@@ -35,20 +31,18 @@ class php::drush {
     source => 'puppet:///modules/php/tmp/drush-7.0.0-alpha8.tar.gz'
   }
 
-  exec { 'tar xzf drush-7.0.0-alpha8.tar.gz':
+  bash_exec { 'tar xzf drush-7.0.0-alpha8.tar.gz':
     cwd => '/tmp',
-    path => ['/bin'],
     require => File['/tmp/drush-7.0.0-alpha8.tar.gz']
   }
 
-  exec { 'mv drush-7.0.0-alpha8 /opt/drush7':
+  bash_exec { 'mv drush-7.0.0-alpha8 /opt/drush7':
     cwd => '/tmp',
-    path => ['/bin'],
-    require => Exec['tar xzf drush-7.0.0-alpha8.tar.gz']
+    require => Bash_exec['tar xzf drush-7.0.0-alpha8.tar.gz']
   }
 
-  exec { '/bin/bash -c "cd /opt/drush7 && composer install"':
+  bash_exec { 'cd /opt/drush7 && composer install':
     timeout => 0,
-    require => Exec['mv drush-7.0.0-alpha8 /opt/drush7']
+    require => Bash_exec['mv drush-7.0.0-alpha8 /opt/drush7']
   }
 }

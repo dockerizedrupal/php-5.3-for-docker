@@ -10,13 +10,13 @@ class php::extension::blackfire {
     source => 'puppet:///modules/php/tmp/blackfire-php-linux_amd64-php-53.so'
   }
 
-  exec { '/bin/su - root -mc "curl -s https://packagecloud.io/gpg.key | apt-key add -"': }
+  exec { '/bin/bash -c "curl -s https://packagecloud.io/gpg.key | apt-key add -"': }
 
   file { '/etc/apt/sources.list.d/blackfire.list':
     ensure => present,
     source => 'puppet:///modules/php/etc/apt/sources.list.d/blackfire.list',
     mode => 644,
-    require => Exec['/bin/su - root -mc "curl -s https://packagecloud.io/gpg.key | apt-key add -"']
+    require => Exec['/bin/bash -c "curl -s https://packagecloud.io/gpg.key | apt-key add -"']
   }
 
   exec { 'apt-get update':

@@ -10,25 +10,27 @@ class php::freetds {
     require => File['/tmp/freetds-stable.tgz']
   }
 
-  exec { '/bin/su - root -mc "cd /tmp/freetds-0.91 && ./configure --prefix=/usr/local/freetds --enable-msdblib"':
+  exec { '/bin/bash -c "cd /tmp/freetds-0.91 && ./configure --prefix=/usr/local/freetds --enable-msdblib"':
+    cwd => '/tmp/freetds-0.91',
+    path => ['/tmp/freetds-0.91'],
     timeout => 0,
     require => Exec['tar xzf freetds-stable.tgz']
   }
 
-  exec { '/bin/su - root -mc "cd /tmp/freetds-0.91 && make"':
+  exec { '/bin/bash -c "cd /tmp/freetds-0.91 && make"':
     timeout => 0,
-    require => Exec['/bin/su - root -mc "cd /tmp/freetds-0.91 && ./configure --prefix=/usr/local/freetds --enable-msdblib"']
+    require => Exec['/bin/bash -c "cd /tmp/freetds-0.91 && ./configure --prefix=/usr/local/freetds --enable-msdblib"']
   }
 
-  exec { '/bin/su - root -mc "cd /tmp/freetds-0.91 && make install"':
+  exec { '/bin/bash -c "cd /tmp/freetds-0.91 && make install"':
     timeout => 0,
-    require => Exec['/bin/su - root -mc "cd /tmp/freetds-0.91 && make"']
+    require => Exec['/bin/bash -c "cd /tmp/freetds-0.91 && make"']
   }
 
   exec { 'cp include/tds.h /usr/local/freetds/include':
     cwd => '/tmp/freetds-0.91',
     path => ['/bin'],
-    require => Exec['/bin/su - root -mc "cd /tmp/freetds-0.91 && make install"']
+    require => Exec['/bin/bash -c "cd /tmp/freetds-0.91 && make install"']
   }
 
   exec { 'cp src/tds/.libs/libtds.a /usr/local/freetds/lib':

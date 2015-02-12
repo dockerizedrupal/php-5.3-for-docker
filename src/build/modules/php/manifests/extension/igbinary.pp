@@ -18,18 +18,18 @@ class php::extension::igbinary {
     require => Exec['tar xzf igbinary-1.2.1.tgz']
   }
 
-  exec { '/bin/su - root -mc "cd /tmp/igbinary-1.2.1 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29 --enable-igbinary"':
+  exec { '/bin/bash -c "cd /tmp/igbinary-1.2.1 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29 --enable-igbinary"':
     timeout => 0,
     require => Exec['phpize-5.3.29 igbinary']
   }
 
-  exec { '/bin/su - root -mc "cd /tmp/igbinary-1.2.1 && make"':
+  exec { '/bin/bash -c "cd /tmp/igbinary-1.2.1 && make"':
     timeout => 0,
-    require => Exec['/bin/su - root -mc "cd /tmp/igbinary-1.2.1 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29 --enable-igbinary"']
+    require => Exec['/bin/bash -c "cd /tmp/igbinary-1.2.1 && ./configure --with-php-config=/phpfarm/inst/bin/php-config-5.3.29 --enable-igbinary"']
   }
 
-  exec { '/bin/su - root -mc "cd /tmp/igbinary-1.2.1 && make install"':
+  exec { '/bin/bash -c "cd /tmp/igbinary-1.2.1 && make install"':
     timeout => 0,
-    require => Exec['/bin/su - root -mc "cd /tmp/igbinary-1.2.1 && make"']
+    require => Exec['/bin/bash -c "cd /tmp/igbinary-1.2.1 && make"']
   }
 }

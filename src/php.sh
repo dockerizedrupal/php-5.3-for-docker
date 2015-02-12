@@ -2,12 +2,12 @@
 
 case "${1}" in
   build)
-    /bin/su - root -mc /src/build.sh
+    /bin/bash -c /src/build.sh
     ;;
   clean)
-    /bin/su - root -mc /src/clean.sh
+    /bin/bash -c /src/clean.sh
     ;;
   run)
-    /bin/su - root -mc /src/run.sh
+    /bin/bash -c /src/run.sh
     ;;
 esac

@@ -4,13 +4,11 @@ class php::phpfarm {
     source => 'puppet:///modules/php/tmp/phpfarm-master.zip'
   }
 
-  bash_exec { 'unzip phpfarm-master.zip':
-    cwd => '/tmp',
+  bash_exec { 'cd /tmp && unzip phpfarm-master.zip':
     require => File['/tmp/phpfarm-master.zip']
   }
 
-  bash_exec { 'mv phpfarm-master /phpfarm':
-    cwd => '/tmp',
+  bash_exec { 'cd /tmp && mv phpfarm-master /phpfarm':
     require => Bash_exec['unzip phpfarm-master.zip']
   }
 

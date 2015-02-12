@@ -14,7 +14,7 @@ class php::phpfarm {
 
   file { '/phpfarm/custom':
     ensure => directory,
-    require => Bash_exec['mv phpfarm-master /phpfarm']
+    require => Bash_exec['cd /tmp && mv phpfarm-master /phpfarm']
   }
 
   file { '/etc/profile.d/phpfarm.sh':

@@ -11,8 +11,6 @@ class php::freetds {
   }
 
   exec { '/bin/bash -c "cd /tmp/freetds-0.91 && ./configure --prefix=/usr/local/freetds --enable-msdblib"':
-    cwd => '/tmp/freetds-0.91',
-    path => ['/tmp/freetds-0.91'],
     timeout => 0,
     require => Exec['tar xzf freetds-stable.tgz']
   }

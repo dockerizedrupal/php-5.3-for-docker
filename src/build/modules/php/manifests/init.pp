@@ -74,7 +74,8 @@ class php {
     require => Exec['/bin/bash -c "PHPFPM=1 && /phpfarm/src/main.sh 5.3.29"']
   }
 
-  exec { '/bin/bash -c "switch-phpfarm 5.3.29"':
+  exec { 'switch-phpfarm 5.3.29':
+    provider => shell,
     require => Exec['/bin/bash -c "PHPFPM=1 && /phpfarm/src/main.sh 5.3.29"']
   }
 }

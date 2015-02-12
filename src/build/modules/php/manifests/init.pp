@@ -1,6 +1,6 @@
 define bash_exec (
   $command = $name,
-  $user = undef,
+  $user = 'root',
   $creates = undef,
   $cwd = undef,
   $environment = undef,
@@ -19,10 +19,6 @@ define bash_exec (
   $unless = undef
 ) {
   $escaped_command = regsubst($command, "\"", "\\\"", 'G')
-
-  if $user == undef {
-    $user = 'root'
-  }
 
   if $unless == undef {
     $escaped_unless = undef

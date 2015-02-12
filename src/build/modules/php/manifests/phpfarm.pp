@@ -9,7 +9,7 @@ class php::phpfarm {
   }
 
   bash_exec { 'cd /tmp && mv phpfarm-master /phpfarm':
-    require => Bash_exec['unzip phpfarm-master.zip']
+    require => Bash_exec['cd /tmp && unzip phpfarm-master.zip']
   }
 
   file { '/phpfarm/custom':

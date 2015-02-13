@@ -21,7 +21,7 @@ EOF
 }
 
 setup() {
-  fig -f "${FIG_FILE}" up -d  > /dev/null 2>&1
+  fig -f "${FIG_FILE}" up -d > /dev/null 2>&1
 
   sleep 10
 
@@ -39,7 +39,7 @@ teardown() {
   echo "${output}"
 
   [ "${status}" -eq 0 ]
-  [[ "${output}" == *"drush version 6.5.0"* ]]
+  [[ "${output}" == *"6.5.0"* ]]
 }
 
 @test "drush cc all" {
@@ -48,5 +48,5 @@ teardown() {
   echo "${output}"
 
   [ "${status}" -eq 0 ]
-  [[ "${output}" == *"'all' cache was cleared in"* ]]
+  [[ "${output}" == *"'all' cache was cleared."* ]]
 }

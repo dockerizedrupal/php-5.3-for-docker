@@ -42,14 +42,14 @@ teardown() {
   [ "${status}" -eq 0 ]
 }
 
-@test "php: extension: redis" {
-  run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'redis'"
+@test "php: extension: apcu" {
+  run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'apcu'"
 
   [ "${status}" -eq 0 ]
 }
 
-@test "php: extension: redis" {
-  run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'redis'"
+@test "php: extension: memcached" {
+  run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'memcached'"
 
   [ "${status}" -eq 0 ]
 }

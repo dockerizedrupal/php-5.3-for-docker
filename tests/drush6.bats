@@ -1,6 +1,6 @@
 #!/usr/bin/env bats
 
-FIG_FILE="${BATS_TEST_DIRNAME}/drush5.yml"
+FIG_FILE="${BATS_TEST_DIRNAME}/drush6.yml"
 
 container() {
   echo "$(fig -f ${FIG_FILE} ps php | grep php | awk '{ print $1 }')"

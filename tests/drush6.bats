@@ -7,11 +7,17 @@ container() {
 }
 
 setup_drupal() {
-  docker exec -i -t "$(container)" /bin/su - root -mc "wget http://ftp.drupal.org/files/projects/drupal-7.34.tar.gz -O /tmp/drupal-7.34.tar.gz > /dev/null 2>&1"
-  docker exec -i -t "$(container)" /bin/su - root -mc "tar xzf /tmp/drupal-7.34.tar.gz -C /tmp > /dev/null 2>&1"
-  docker exec -i -t "$(container)" /bin/su - root -mc "rsync -avz /tmp/drupal-7.34/ /httpd/data > /dev/null 2>&1"
-  docker exec -i -t "$(container)" /bin/su - root -mc "cd /httpd/data && chown www-data.www-data . > /dev/null 2>&1"
-  docker exec -i -t "$(container)" /bin/su - root -mc "drush -r /httpd/data -y site-install --db-url=mysql://root:root@localhost/drupal --account-name=admin --account-pass=admin > /dev/null 2>&1"
+  command() {
+    cat <<EOF
+wget http://ftp.drupal.org/files/projects/drupal-7.34.tar.gz -O /tmp/drupal-7.34.tar.gz
+  && tar xzf /tmp/drupal-7.34.tar.gz -C /tmp
+  && rsync -avz /tmp/drupal-7.34/ /httpd/data
+  && cd /httpd/data && chown www-data.www-data .
+  && drush -r /httpd/data -y site-install --db-url=mysql://root:root@localhost/drupal --account-name=admin --account-pass=admin
+EOF
+  }
+
+  docker exec -i -t "$(container)" /bin/su - root -mc "$(command > /dev/null 2>&1)"
 }
 
 setup() {

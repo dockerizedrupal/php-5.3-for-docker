@@ -1,6 +1,6 @@
 #!/usr/bin/env bats
 
-FIG_FILE="${BATS_TEST_DIRNAME}/php_5_3.yml"
+FIG_FILE="${BATS_TEST_DIRNAME}/php.yml"
 
 container() {
   echo "$(fig -f ${FIG_FILE} ps php | grep php | awk '{ print $1 }')"
@@ -17,56 +17,56 @@ teardown() {
   fig -f "${FIG_FILE}" rm --force
 }
 
-@test "PHP 5.3" {
+@test "php" {
   run docker exec "$(container)" /bin/su - root -mc "php -v"
 
   [ "${status}" -eq 0 ]
   [[ "${output}" == *"PHP 5.3"* ]]
 }
 
-@test "PHP 5.3: Extension: xdebug" {
+@test "php: extension: xdebug" {
   run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'Xdebug'"
 
   [ "${status}" -eq 0 ]
 }
 
-@test "PHP 5.3: Extension: opcache" {
+@test "php: extension: opcache" {
   run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'Zend OPcache'"
 
   [ "${status}" -eq 0 ]
 }
 
-@test "PHP 5.3: Extension: apd" {
+@test "php: extension: apd" {
   run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'Advanced PHP Debugger (APD)'"
 
   [ "${status}" -eq 0 ]
 }
 
-@test "PHP 5.3: Extension: redis" {
+@test "php: extension: redis" {
   run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'redis'"
 
   [ "${status}" -eq 0 ]
 }
 
-@test "PHP 5.3: Extension: redis" {
+@test "php: extension: redis" {
   run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'redis'"
 
   [ "${status}" -eq 0 ]
 }
 
-@test "PHP 5.3: Extension: redis" {
+@test "php: extension: redis" {
   run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'redis'"
 
   [ "${status}" -eq 0 ]
 }
 
-@test "PHP 5.3: Extension: igbinary" {
+@test "php: extension: igbinary" {
   run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'igbinary'"
 
   [ "${status}" -eq 0 ]
 }
 
-@test "PHP 5.3: Extension: mssql" {
+@test "php: extension: mssql" {
   run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'mssql'"
 
   [ "${status}" -eq 0 ]

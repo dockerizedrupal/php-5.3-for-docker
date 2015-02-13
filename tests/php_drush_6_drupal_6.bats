@@ -1,6 +1,6 @@
 #!/usr/bin/env bats
 
-FIG_FILE="${BATS_TEST_DIRNAME}/php_5_3_drush_7_drupal_6.yml"
+FIG_FILE="${BATS_TEST_DIRNAME}/php_drush_6_drupal_6.yml"
 
 container() {
   echo "$(fig -f ${FIG_FILE} ps php | grep php | awk '{ print $1 }')"
@@ -27,9 +27,9 @@ teardown() {
   fig -f "${FIG_FILE}" rm --force
 }
 
-@test "PHP 5.3: Drush 7: Drupal 6" {
-  run docker exec "$(container)" /bin/su - root -mc "drush -r /httpd/data/ status"
+@test "php: drush 6: drupal 6" {
+  run docker exec "$(container)" /bin/su - root -mc "drush -r /httpd/data/ status | grep 'Drupal bootstrap'"
 
   [ "${status}" -eq 0 ]
-  [[ "$(echo ${output} | grep 'Drupal bootstrap')" == *"Successful"* ]]
+  [[ "${output}" == *"Successful"* ]]
 }

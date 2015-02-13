@@ -17,43 +17,75 @@ teardown() {
   fig -f "${FIG_FILE}" rm --force
 }
 
-@test "php" {
-  docker exec "$(container)" /bin/su - root -mc "php -v"
+@test "PHP 5.3" {
+  run docker exec "$(container)" /bin/su - root -mc "php -v"
+
+  echo "${output}"
+
+  [ "${status}" -eq 0 ]
+  [[ "${output}" == *"PHP 5.3"* ]]
 }
 
-@test "php: xdebug" {
-  docker exec "$(container)" /bin/su - root -mc "php -m | grep 'Xdebug'"
+@test "PHP 5.3: Extension: xdebug" {
+  run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'Xdebug'"
+
+  echo "${output}"
+
+  [ "${status}" -eq 0 ]
 }
 
-@test "php: zend opcache" {
-  docker exec "$(container)" /bin/su - root -mc "php -m | grep 'Zend OPcache'"
+@test "PHP 5.3: Extension: opcache" {
+  run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'Zend OPcache'"
+
+  echo "${output}"
+
+  [ "${status}" -eq 0 ]
 }
 
-@test "php: advanced php debugger (apd)" {
-  docker exec "$(container)" /bin/su - root -mc "php -m | grep 'Advanced PHP Debugger (APD)'"
+@test "PHP 5.3: Extension: apd" {
+  run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'Advanced PHP Debugger (APD)'"
+
+  echo "${output}"
+
+  [ "${status}" -eq 0 ]
 }
 
-@test "php: apcu" {
-  docker exec "$(container)" /bin/su - root -mc "php -m | grep 'apcu'"
+@test "PHP 5.3: Extension: redis" {
+  run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'redis'"
+
+  echo "${output}"
+
+  [ "${status}" -eq 0 ]
 }
 
-@test "php: memcached" {
-  docker exec "$(container)" /bin/su - root -mc "php -m | grep 'memcached'"
+@test "PHP 5.3: Extension: redis" {
+  run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'redis'"
+
+  echo "${output}"
+
+  [ "${status}" -eq 0 ]
 }
 
-@test "php: redis" {
-  docker exec "$(container)" /bin/su - root -mc "php -m | grep 'redis'"
+@test "PHP 5.3: Extension: redis" {
+  run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'redis'"
+
+  echo "${output}"
+
+  [ "${status}" -eq 0 ]
 }
 
-@test "php: igbinary" {
-  docker exec "$(container)" /bin/su - root -mc "php -m | grep 'igbinary'"
+@test "PHP 5.3: Extension: igbinary" {
+  run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'igbinary'"
+
+  echo "${output}"
+
+  [ "${status}" -eq 0 ]
 }
 
+@test "PHP 5.3: Extension: mssql" {
+  run docker exec "$(container)" /bin/su - root -mc "php -m | grep 'mssql'"
 
-@test "php: mssql" {
-  docker exec "$(container)" /bin/su - root -mc "php -m | grep 'mssql'"
-}
+  echo "${output}"
 
-@test "drush" {
-  docker exec "$(container)" /bin/su - root -mc "drush status"
+  [ "${status}" -eq 0 ]
 }

@@ -13,7 +13,7 @@ wget http://ftp.drupal.org/files/projects/drupal-7.34.tar.gz -O /tmp/drupal-7.34
   && tar xzf /tmp/drupal-7.34.tar.gz -C /tmp
   && rsync -avz /tmp/drupal-7.34/ /httpd/data
   && cd /httpd/data && chown www-data.www-data .
-  && drush -r /httpd/data -y site-install --db-url=mysql://root:root@localhost/drupal --account-name=admin --account-pass=admin
+  && drush -r /httpd/data -y site-install --db-url=mysqli://root:root@localhost/drupal --account-name=admin --account-pass=admin
 EOF
   }
 

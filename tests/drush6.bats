@@ -42,7 +42,7 @@ teardown() {
   echo "${output}"
 
   [ "${status}" -eq 0 ]
-  [[ "${output}" == *"6.5.0"* ]]
+  [[ "$(echo ${output} | grep 'Drupal bootstrap')" == *"Successful"* ]]
 }
 
 @test "drush cc all" {

@@ -21,7 +21,7 @@ EOF
 }
 
 setup() {
-  fig -f "${FIG_FILE}" up -d
+  fig -f "${FIG_FILE}" up -d  > /dev/null 2>&1
 
   sleep 10
 
@@ -29,8 +29,8 @@ setup() {
 }
 
 teardown() {
-  fig -f "${FIG_FILE}" kill
-  fig -f "${FIG_FILE}" rm --force
+  fig -f "${FIG_FILE}" kill > /dev/null 2>&1
+  fig -f "${FIG_FILE}" rm --force > /dev/null 2>&1
 }
 
 @test "drush --version" {

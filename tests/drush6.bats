@@ -17,7 +17,7 @@ wget http://ftp.drupal.org/files/projects/drupal-7.34.tar.gz -O /tmp/drupal-7.34
 EOF
   }
 
-  docker exec -i -t "$(container)" /bin/su - root -mc "$(command > /dev/null 2>&1)"
+  docker exec -i -t "$(container)" /bin/su - root -mc "$(command > /dev/null 2>&1)" > /dev/null 2>&1
 }
 
 setup() {

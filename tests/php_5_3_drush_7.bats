@@ -23,5 +23,5 @@ teardown() {
   echo "${output}"
 
   [ "${status}" -eq 0 ]
-  [[ "${output}" == *"7.0.0"* ]]
+  [[ "${output}" == *"7.0-dev"* ]]
 }

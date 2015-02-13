@@ -30,8 +30,6 @@ teardown() {
 @test "PHP 5.3: Drush 6: Drupal 6" {
   run docker exec "$(container)" /bin/su - root -mc "drush -r /httpd/data/ status | grep 'Drupal bootstrap'"
 
-  echo "${output}"
-
   [ "${status}" -eq 0 ]
   [[ "${output}" == *"Successful"* ]]
 }

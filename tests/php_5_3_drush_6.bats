@@ -20,8 +20,6 @@ teardown() {
 @test "PHP 5.3: Drush 6" {
   run docker exec "$(container)" /bin/su - root -mc "drush --version"
 
-  echo "${output}"
-
   [ "${status}" -eq 0 ]
   [[ "${output}" == *"6.5.0"* ]]
 }

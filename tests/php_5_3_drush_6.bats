@@ -17,7 +17,7 @@ teardown() {
   fig -f "${FIG_FILE}" rm --force
 }
 
-@test "drush --version" {
+@test "PHP 5.3: Drush 6" {
   run docker exec "$(container)" /bin/su - root -mc "drush --version"
 
   echo "${output}"

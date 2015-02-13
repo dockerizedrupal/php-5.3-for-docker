@@ -17,11 +17,11 @@ wget http://ftp.drupal.org/files/projects/drupal-7.34.tar.gz -O /tmp/drupal-7.34
 EOF
   }
 
-  docker exec -i -t "$(container)" /bin/su - root -mc "$(command > /dev/null 2>&1)" > /dev/null 2>&1
+  docker exec -i -t "$(container)" /bin/su - root -mc "$(command)"
 }
 
 setup() {
-  fig -f "${FIG_FILE}" up -d > /dev/null 2>&1
+  fig -f "${FIG_FILE}" up -d
 
   sleep 10
 
@@ -29,12 +29,21 @@ setup() {
 }
 
 teardown() {
-  fig -f "${FIG_FILE}" kill > /dev/null 2>&1
-  fig -f "${FIG_FILE}" rm --force > /dev/null 2>&1
+  fig -f "${FIG_FILE}" kill
+  fig -f "${FIG_FILE}" rm --force
 }
 
 @test "drush --version" {
   run docker exec -i -t "$(container)" /bin/su - root -mc "drush --version"
+
+  echo "${output}"
+
+  [ "${status}" -eq 0 ]
+  [[ "${output}" == *"6.5.0"* ]]
+}
+
+@test "drush status" {
+  run docker exec -i -t "$(container)" /bin/su - root -mc "drush -r /httpd/data/ status"
 
   echo "${output}"
 

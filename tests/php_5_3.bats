@@ -1,15 +1,20 @@
 #!/usr/bin/env bats
 
-CONTAINER="php"
+FIG_FILE="${BATS_TEST_DIRNAME}/php_5_3.yml"
+
+container() {
+  echo "$(fig -f ${FIG_FILE} ps php | grep php | awk '{ print $1 }')"
+}
 
 setup() {
-  docker run --name "${CONTAINER}" -h "${CONTAINER}" -p 9000:9000 -d simpledrupalcloud/php:5.3-dev
+  fig -f "${FIG_FILE}" up -d
 
-  sleep 5
+  sleep 10
 }
 
 teardown() {
-  docker rm -f "${CONTAINER}"
+  fig -f "${FIG_FILE}" kill
+  fig -f "${FIG_FILE}" rm --force
 }
 
 @test "php" {

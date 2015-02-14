@@ -56,23 +56,13 @@ define bash_exec (
 }
 
 class php {
-  bash_exec { 'apt-get clean':
-    path => ['/usr/bin']
-  }
+  bash_exec { 'apt-get clean': }
 
-  bash_exec { 'rm -rf /src/build':
-    path => ['/bin']
-  }
+  bash_exec { 'rm -rf /src/build': }
 
-  bash_exec { 'rm -rf /src/build.sh':
-    path => ['/bin']
-  }
+  bash_exec { 'rm -rf /src/build.sh': }
 
-  bash_exec { 'rm -rf /tmp/*':
-    path => ['/bin']
-  }
+  bash_exec { 'rm -rf /tmp/*': }
 
-  bash_exec { 'rm -rf /var/lib/apt/lists/*':
-    path => ['/bin']
-  }
+  bash_exec { 'rm -rf /var/lib/apt/lists/*': }
 }

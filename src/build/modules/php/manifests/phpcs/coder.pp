@@ -15,7 +15,7 @@ class php::phpcs::coder {
     require => Bash_exec['cd /tmp && tar xzf coder-7.x-2.4.tar.gz']
   }
 
-  file { '/root/.composer/vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Drupal':
+  file { '/usr/local/src/PHP_CodeSniffer/CodeSniffer/Standards/Drupal':
     ensure => link,
     target => '/root/.drush/coder/coder_sniffer/Drupal',
     require => Bash_exec['mv /tmp/coder /root/.drush/coder']

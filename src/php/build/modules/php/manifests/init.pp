@@ -104,7 +104,7 @@ class php {
 
   bash_exec { 'PHPFPM=1 && /usr/local/src/phpfarm/src/main.sh 5.3.29':
     timeout => 0,
-    require => Bash_exec['cp /src/php//build/modules/php/files/phpfarm/src/custom/options-5.3.29-fpm.sh /usr/local/src/phpfarm/src/custom/options-5.3.29.sh']
+    require => Bash_exec['cp /src/php/build/modules/php/files/phpfarm/src/custom/options-5.3.29-fpm.sh /usr/local/src/phpfarm/src/custom/options-5.3.29.sh']
   }
 
   bash_exec { 'rm -rf /usr/local/src/phpfarm/src/php-5.3.29':

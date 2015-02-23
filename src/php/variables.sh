@@ -94,7 +94,7 @@ for VARIABLE in $(env); do
 
     FREETDS_PORT="FREETDS_${i}_PORT"
 
-    if [ -n "${!FREETDS_PORT}" ]; then
+    if [ -z "${!FREETDS_PORT}" ]; then
       declare "${FREETDS_PORT}=1433"
     fi
 
@@ -102,7 +102,7 @@ for VARIABLE in $(env); do
 
     FREETDS_TDS_VERSION="FREETDS_${i}_TDS_VERSION"
 
-    if [ -n "${!FREETDS_TDS_VERSION}" ]; then
+    if [ -z "${!FREETDS_TDS_VERSION}" ]; then
       declare "${FREETDS_TDS_VERSION}=8.0"
     fi
 
@@ -110,7 +110,7 @@ for VARIABLE in $(env); do
 
     FREETDS_SERVER_NAME="FREETDS_${i}_SERVER_NAME"
 
-    if [ -n "${!FREETDS_SERVER_NAME}" ]; then
+    if [ -z "${!FREETDS_SERVER_NAME}" ]; then
       declare "${FREETDS_SERVER_NAME}=server-${i}"
     fi
 

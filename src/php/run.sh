@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-puppet apply --modulepath=/src/entrypoint/run/modules /src/entrypoint/run/run.pp
+puppet apply --modulepath=/src/php/run/modules /src/php/run/run.pp
 
 /usr/bin/supervisord

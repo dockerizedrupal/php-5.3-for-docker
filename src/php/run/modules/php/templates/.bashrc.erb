@@ -1,9 +1,5 @@
 export PATH="${HOME}/.composer/vendor/bin:${PATH}"
 
-<% if @drush_version == "6" %>
-. /etc/bash_completion.d/drush.complete.sh
-<% end %>
-
-<% if @drush_version == "7" %>
+<% if defined?(@drush_version) %>
 . /etc/bash_completion.d/drush.complete.sh
 <% end %>

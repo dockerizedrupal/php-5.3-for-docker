@@ -17,7 +17,7 @@ teardown() {
   fig -f "${FIG_FILE}" rm --force
 }
 
-@test "php: smtp: disabled" {
+@test "php: smtp: enabled" {
   run docker exec "$(container)" /bin/su - root -mc "cat /etc/postfix/main.cf | grep 'relayhost'"
 
   [ "${status}" -eq 0 ]

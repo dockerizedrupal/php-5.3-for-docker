@@ -1,6 +1,4 @@
 class php::phpcs {
-  require php
-
   file { '/tmp/PHP_CodeSniffer-1.5.6.tar.gz':
     ensure => present,
     source => 'puppet:///modules/php/tmp/PHP_CodeSniffer-1.5.6.tar.gz'

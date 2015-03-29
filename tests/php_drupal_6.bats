@@ -1,6 +1,6 @@
 #!/usr/bin/env bats
 
-FIG_FILE="${BATS_TEST_DIRNAME}/php_drush_7_drupal_6.yml"
+FIG_FILE="${BATS_TEST_DIRNAME}/php_drupal_6.yml"
 
 container() {
   echo "$(fig -f ${FIG_FILE} ps php | grep php | awk '{ print $1 }')"
@@ -27,9 +27,29 @@ teardown() {
   fig -f "${FIG_FILE}" rm --force
 }
 
-@test "php: drush 7: drupal 6" {
-  run docker exec "$(container)" /bin/su - root -mc "drush -r /httpd/data/ status"
+@test "php: drupal 6" {
+  run docker exec "$(container)" /bin/su - root -mc "drush -r /httpd/data/ status | grep 'Drupal bootstrap'"
 
   [ "${status}" -eq 0 ]
-  [[ "$(echo ${output} | grep 'Drupal bootstrap')" == *"Successful"* ]]
+  [[ "${output}" == *"Successful"* ]]
+}
+
+@test "php: drupal 6: drush 6" {
+  run docker exec "$(container)" /bin/su - root -mc "drush --version"
+
+  [ "${status}" -eq 0 ]
+  [[ "${output}" == *"6.5.0"* ]]
+}
+
+@test "php: drupal 6: phpcs" {
+  run docker exec "$(container)" /bin/su - root -mc "phpcs --version"
+
+  [ "${status}" -eq 0 ]
+  [[ "${output}" == *"1.5.6"* ]]
+}
+
+@test "php: drupal 6: phpcs: phpcompatibility" {
+  run docker exec "$(container)" /bin/su - root -mc "phpcs -i | grep PHPCompatibility"
+
+  [ "${status}" -eq 0 ]
 }

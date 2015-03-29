@@ -1,5 +1,5 @@
 httpd:
-  image: simpledrupalcloud/httpd:latest
+  image: viljaste/httpd:latest
   hostname: httpd
   ports:
     - "80"
@@ -9,26 +9,26 @@ httpd:
   links:
     - php
 httpdata:
-  image: simpledrupalcloud/data:latest
+  image: viljaste/data:latest
   hostname: httpdata
   volumes:
     - /httpd
 mysqld:
-  image: simpledrupalcloud/mysqld:latest
+  image: viljaste/mysqld:latest
   hostname: mysqld
   volumes_from:
     - mysqlddata
 mysqlddata:
-  image: simpledrupalcloud/data:latest
+  image: viljaste/data:latest
   hostname: mysqlddata
   volumes:
     - /mysqld
 php:
-  image: simpledrupalcloud/php:5.3
+  image: viljaste/php:5.3
   hostname: php
   volumes_from:
     - httpdata
   links:
     - mysqld
   environment:
-    - DRUSH_VERSION=6
+    - DRUPAL_VERSION=6

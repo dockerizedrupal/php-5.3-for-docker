@@ -23,7 +23,7 @@ class php {
 
   file { '/usr/local/src/phpfarm/src/custom/options-5.3.29.sh':
     ensure => present,
-    source => 'puppet:///modules/php/phpfarm/src/custom/options-5.3.29.sh',
+    source => 'puppet:///modules/php/usr/local/src/phpfarm/src/custom/options-5.3.29.sh',
     mode => 755,
     require => Bash_exec['cp -r /tmp/php-5.3.29 /usr/local/src/phpfarm/src/php-5.3.29']
   }
@@ -41,13 +41,13 @@ class php {
     require => Bash_exec['rm -r /usr/local/src/phpfarm/src/php-5.3.29']
   }
 
-  bash_exec { 'cp /src/php/build/modules/php/files/phpfarm/src/custom/options-5.3.29-fpm.sh /usr/local/src/phpfarm/src/custom/options-5.3.29.sh':
+  bash_exec { 'cp /src/php/build/modules/php/files/usr/local/src/phpfarm/src/custom/options-5.3.29-fpm.sh /usr/local/src/phpfarm/src/custom/options-5.3.29.sh':
     require => Bash_exec['CP=1 && cp -r /tmp/php-5.3.29 /usr/local/src/phpfarm/src/php-5.3.29']
   }
 
   bash_exec { 'PHPFPM=1 && /usr/local/src/phpfarm/src/main.sh 5.3.29':
     timeout => 0,
-    require => Bash_exec['cp /src/php/build/modules/php/files/phpfarm/src/custom/options-5.3.29-fpm.sh /usr/local/src/phpfarm/src/custom/options-5.3.29.sh']
+    require => Bash_exec['cp /src/php/build/modules/php/files/usr/local/src/phpfarm/src/custom/options-5.3.29-fpm.sh /usr/local/src/phpfarm/src/custom/options-5.3.29.sh']
   }
 
   bash_exec { 'rm -rf /usr/local/src/phpfarm/src/php-5.3.29':
@@ -56,7 +56,7 @@ class php {
 
   file { '/usr/local/src/phpfarm/inst/php-5.3.29/etc/php-fpm.conf':
     ensure => present,
-    source => 'puppet:///modules/php/phpfarm/inst/php-5.3.29/etc/php-fpm.conf',
+    source => 'puppet:///modules/php/usr/local/src/phpfarm/inst/php-5.3.29/etc/php-fpm.conf',
     mode => 644,
     require => Bash_exec['PHPFPM=1 && /usr/local/src/phpfarm/src/main.sh 5.3.29']
   }

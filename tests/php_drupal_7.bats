@@ -49,13 +49,13 @@ teardown() {
 }
 
 @test "php: drupal 7: phpcs: phpcompatibility" {
-  run docker exec "$(container)" /bin/su - root -mc "phpcs -i | grep PHPCompatibility"
+  run docker exec "$(container)" /bin/su - root -mc "phpcs -i | grep 'PHPCompatibility'"
 
   [ "${status}" -eq 0 ]
 }
 
 @test "php: drupal 7: phpcs: drupal" {
-  run docker exec "$(container)" /bin/su - root -mc "phpcs -i | grep Drupal"
+  run docker exec "$(container)" /bin/su - root -mc "phpcs -i | grep 'Drupal'"
 
   [ "${status}" -eq 0 ]
 }

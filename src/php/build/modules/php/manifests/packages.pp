@@ -14,7 +14,8 @@ class php::packages {
       'autoconf',
       'libcloog-ppl1',
       'libsasl2-dev',
-      'libldap2-dev'
+      'libldap2-dev',
+      'pkg-config'
     ]:
     ensure => present
   }

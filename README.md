@@ -13,7 +13,7 @@ Using the `docker` command:
       -h "${CONTAINER}" \
       -p 9000:9000 \
       -e SERVER_NAME="localhost" \
-      -e DRUPAL_VERSION="8" \
+      -e DRUPAL_VERSION="7" \
       -e TIMEZONE="UTC" \
       -e POST_MAX_SIZE="512M" \
       -e UPLOAD_MAX_FILESIZE="512M" \

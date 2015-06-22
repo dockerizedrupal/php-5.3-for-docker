@@ -5,7 +5,7 @@ php:
     - "9000:9000"
   environment:
     - SERVER_NAME=localhost
-    - DRUPAL_VERSION=8
+    - DRUPAL_VERSION=7
     - POST_MAX_SIZE=512M
     - TIMEZONE=UTC
     - UPLOAD_MAX_FILESIZE=512M

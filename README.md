@@ -38,10 +38,12 @@ Using the `docker` command:
       -e PHP_INI_MEMCACHED="On" \
       -e PHP_INI_REDIS="On" \
       -e PHP_INI_BLACKFIRE="On" \
+      -e PHP_INI_BLACKFIRE_SERVER_ID="" \
+      -e PHP_INI_BLACKFIRE_SERVER_TOKEN="" \
       -e PHP_INI_APCU="On" \
       -e PHP_INI_APD="On" \
-      -e USER_ID="0" \
-      -e GROUP_ID="0" \
+      -e USER_ID="" \
+      -e GROUP_ID="" \
       -d \
       viljaste/php:5.3
       

@@ -1,0 +1,7 @@
+[program:blackfire]
+command = /usr/bin/blackfire-agent -server-id="<%= @php_ini_blackfire_server_id %>" --server-token="<%= @php_ini_blackfire_server_token %>"
+autostart = true
+autorestart = true
+stdout_logfile = /dev/stdout
+stdout_logfile_maxbytes = 0
+redirect_stderr = true

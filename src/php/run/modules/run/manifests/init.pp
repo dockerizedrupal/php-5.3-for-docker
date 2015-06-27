@@ -38,6 +38,7 @@ class run {
   }
 
   if $php_ini_blackfire == "On" {
+    include run::blackfire
     include run::php::ini::blackfire
   }
 

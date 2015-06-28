@@ -37,7 +37,7 @@ class run {
     include run::php::ini::redis
   }
 
-  if $php_ini_blackfire == "On" {
+  if $php_ini_blackfire == "On" and $php_ini_blackfire_server_id and $php_ini_blackfire_server_token {
     include run::blackfire
     include run::php::ini::blackfire
   }

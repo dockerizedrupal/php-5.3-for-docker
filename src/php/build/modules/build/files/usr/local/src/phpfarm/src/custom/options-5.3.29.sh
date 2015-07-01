@@ -10,6 +10,7 @@ configoptions="--with-libdir=/lib/x86_64-linux-gnu \
   --enable-calendar \
   --enable-mbstring \
   --enable-zip \
+  --enable-pcntl \
   --with-curl \
   --with-gd \
   --with-jpeg-dir=/usr \
@@ -30,4 +31,5 @@ configoptions="--with-libdir=/lib/x86_64-linux-gnu \
   --with-ldap=/usr \
   --with-config-file-scan-dir=/usr/local/src/phpfarm/inst/php-5.3.29/etc/conf.d \
   --with-mssql=/usr/local/freetds \
+  --with-readline \
 "

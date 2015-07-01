@@ -7,11 +7,11 @@ container() {
 }
 
 setup_drupal() {
-  docker exec "$(container)" /bin/su - root -mc "wget http://ftp.drupal.org/files/projects/drupal-7.34.tar.gz -O /tmp/drupal-7.34.tar.gz"
-  docker exec "$(container)" /bin/su - root -mc "tar xzf /tmp/drupal-7.34.tar.gz -C /tmp"
-  docker exec "$(container)" /bin/su - root -mc "rsync -avz /tmp/drupal-7.34/ /httpd/data"
-  docker exec "$(container)" /bin/su - root -mc "chown container.container /httpd/data"
-  docker exec "$(container)" /bin/su - root -mc "drush -r /httpd/data -y site-install --db-url=mysqli://root:root@localhost/drupal --account-name=admin --account-pass=admin"
+  docker exec "$(container)" /bin/su - root -lc "wget http://ftp.drupal.org/files/projects/drupal-7.38.tar.gz -O /tmp/drupal-7.38.tar.gz"
+  docker exec "$(container)" /bin/su - root -lc "tar xzf /tmp/drupal-7.38.tar.gz -C /tmp"
+  docker exec "$(container)" /bin/su - root -lc "rsync -avz /tmp/drupal-7.38/ /httpd/data"
+  docker exec "$(container)" /bin/su - root -lc "drush -r /httpd/data -y site-install --db-url=mysqli://root:root@localhost/drupal --account-name=admin --account-pass=admin"
+  docker exec "$(container)" /bin/su - root -lc "chown container.container /httpd/data"
 }
 
 setup() {
@@ -28,34 +28,34 @@ teardown() {
 }
 
 @test "php: drupal 7" {
-  run docker exec "$(container)" /bin/su - root -mc "drush -r /httpd/data/ status | grep 'Drupal bootstrap'"
+  run docker exec "$(container)" /bin/su - root -lc "drush -r /httpd/data/ status | grep 'Drupal bootstrap'"
 
   [ "${status}" -eq 0 ]
   [[ "${output}" == *"Successful"* ]]
 }
 
 @test "php: drupal 7: drush 7" {
-  run docker exec "$(container)" /bin/su - root -mc "drush --version"
+  run docker exec "$(container)" /bin/su - root -lc "drush --version"
 
   [ "${status}" -eq 0 ]
-  [[ "${output}" == *"7.0-dev"* ]]
+  [[ "${output}" == *"7.0.0"* ]]
 }
 
 @test "php: drupal 7: phpcs" {
-  run docker exec "$(container)" /bin/su - root -mc "phpcs --version"
+  run docker exec "$(container)" /bin/su - root -lc "phpcs --version"
 
   [ "${status}" -eq 0 ]
   [[ "${output}" == *"1.5.6"* ]]
 }
 
 @test "php: drupal 7: phpcs: phpcompatibility" {
-  run docker exec "$(container)" /bin/su - root -mc "phpcs -i | grep 'PHPCompatibility'"
+  run docker exec "$(container)" /bin/su - root -lc "phpcs -i | grep 'PHPCompatibility'"
 
   [ "${status}" -eq 0 ]
 }
 
 @test "php: drupal 7: phpcs: drupal" {
-  run docker exec "$(container)" /bin/su - root -mc "phpcs -i | grep 'Drupal'"
+  run docker exec "$(container)" /bin/su - root -lc "phpcs -i | grep 'Drupal'"
 
   [ "${status}" -eq 0 ]
 }

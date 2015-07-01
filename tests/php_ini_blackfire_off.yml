@@ -1,0 +1,7 @@
+php:
+  image: viljaste/php:5.3
+  hostname: php
+  environment:
+    - PHP_INI_BLACKFIRE=Off
+    - PHP_INI_BLACKFIRE_SERVER_ID=d8108598-7a7a-4c5e-8f03-d0bccadc0931
+    - PHP_INI_BLACKFIRE_SERVER_TOKEN=91bde3fa9350479ba84f90acab46b680142c0f6fe8154a649e82d0d2ddadfa93

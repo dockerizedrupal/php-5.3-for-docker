@@ -1,13 +1,13 @@
 #!/usr/bin/env bats
 
-DOCKER_COMPOSE_FILE="${BATS_TEST_DIRNAME}/php_smtp_on.yml"
+DOCKER_COMPOSE_FILE="${BATS_TEST_DIRNAME}/php-5.3_smtp_on.yml"
 
 container() {
-  echo "$(docker-compose -f ${DOCKER_COMPOSE_FILE} ps php | grep php | awk '{ print $1 }')"
+  echo "$(docker-compose -f ${DOCKER_COMPOSE_FILE} ps php-5.3 | grep php-5.3 | awk '{ print $1 }')"
 }
 
 setup() {
-  docker-compose -f "${DOCKER_COMPOSE_FILE}" up -d --allow-insecure-ssl
+  docker-compose -f "${DOCKER_COMPOSE_FILE}" up -d
 
   sleep 10
 }
@@ -17,7 +17,7 @@ teardown() {
   docker-compose -f "${DOCKER_COMPOSE_FILE}" rm --force
 }
 
-@test "php: smtp: on" {
+@test "php-5.3: smtp: on" {
   run docker exec "$(container)" /bin/su - root -lc "cat /etc/postfix/main.cf | grep 'relayhost'"
 
   [ "${status}" -eq 0 ]

@@ -8,7 +8,7 @@ Configuration, PHP extensions and other tools built into the image are primarily
 
 Using the `docker` command:
 
-    CONTAINER="php" && sudo docker run \
+    CONTAINER="php-5.3" && sudo docker run \
       --name "${CONTAINER}" \
       -h "${CONTAINER}" \
       -p 9000:9000 \
@@ -52,23 +52,21 @@ Using the `docker` command:
       -e USER_ID="" \
       -e GROUP_ID="" \
       -d \
-      dockerizedrupal/php:5.3
+      dockerizedrupal/php-5.3:latest
       
 Using the `docker-compose` command
 
     TMP="$(mktemp -d)" \
-      && git clone https://github.com/dockerizedrupal/docker-php.git "${TMP}" \
+      && git clone https://github.com/dockerizedrupal/docker-php-5.3.git "${TMP}" \
       && cd "${TMP}" \
-      && git checkout 5.3 \
       && sudo docker-compose up
 
 ## Build the image
 
     TMP="$(mktemp -d)" \
-      && git clone https://github.com/dockerizedrupal/docker-php.git "${TMP}" \
+      && git clone https://github.com/dockerizedrupal/docker-php-5.3.git "${TMP}" \
       && cd "${TMP}" \
-      && git checkout 5.3 \
-      && sudo docker build -t dockerizedrupal/php:5.3 . \
+      && sudo docker build -t dockerizedrupal/php-5.3:latest . \
       && cd -
 
 ## Tests

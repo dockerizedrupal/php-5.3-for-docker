@@ -1,6 +1,6 @@
-php:
-  image: dockerizedrupal/php:5.3
-  hostname: php
+php-5.3:
+  image: dockerizedrupal/php-5.3:latest
+  hostname: php-5.3
   environment:
     - PHP_INI_BLACKFIRE=On
     - PHP_INI_BLACKFIRE_SERVER_ID=d8108598-7a7a-4c5e-8f03-d0bccadc0931

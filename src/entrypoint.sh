@@ -2,9 +2,9 @@
 
 case "${1}" in
   build)
-    /bin/su - root -mc "apt-get update && /src/php/build.sh && /src/php/clean.sh"
+    /bin/su - root -mc "apt-get update && /src/php-5.3/build.sh && /src/php-5.3/clean.sh"
     ;;
   run)
-    /bin/su - root -mc "source /src/php/variables.sh && /src/php/run.sh"
+    /bin/su - root -mc "source /src/php-5.3/variables.sh && /src/php-5.3/run.sh"
     ;;
 esac

@@ -76,80 +76,80 @@ Tests are implemented in [Bats: Bash Automated Testing System](https://github.co
 ### Test results for the current release
 
     1..74
-    ok 1 php
-    ok 2 php: drupal 6
-    ok 3 php: drupal 6: drush 6
-    ok 4 php: drupal 6: phpcs
-    ok 5 php: drupal 6: phpcs: phpcompatibility
-    ok 6 php: drupal 7
-    ok 7 php: drupal 7: drush 7
-    ok 8 php: drupal 7: phpcs
-    ok 9 php: drupal 7: phpcs: phpcompatibility
-    ok 10 php: drupal 7: phpcs: drupal
-    ok 11 php: fpm: pm
-    ok 12 php: fpm: pm.max_children
-    ok 13 php: fpm: pm.max_requests
-    ok 14 php: fpm: pm.max_spare_servers
-    ok 15 php: fpm: pm.min_spare_servers
-    ok 16 php: fpm: pm.process_idle_timeout
-    ok 17 php: fpm: pm.start_servers
-    ok 18 php: freetds: FREETDS_1_SERVER_NAME
-    ok 19 php: freetds: FREETDS_1_HOST
-    ok 20 php: freetds: FREETDS_1_PORT
-    ok 21 php: freetds: FREETDS_1_TDS_VERSION
-    ok 22 php: freetds: FREETDS_2_SERVER_NAME
-    ok 23 php: freetds: FREETDS_2_HOST
-    ok 24 php: freetds: FREETDS_2_PORT
-    ok 25 php: freetds: FREETDS_2_TDS_VERSION
-    ok 26 php: freetds: FREETDS_3_SERVER_NAME
-    ok 27 php: freetds: FREETDS_3_HOST
-    ok 28 php: freetds: FREETDS_3_PORT
-    ok 29 php: freetds: FREETDS_3_TDS_VERSION
-    ok 30 php: ini: allow_url_fopen: off
-    ok 31 php: ini: allow_url_fopen: on
-    ok 32 php: ini: apcu: off
-    ok 33 php: ini: apcu: on
-    ok 34 php: ini: apd: off
-    ok 35 php: ini: apd: on
-    ok 36 php: ini: blackfire: off
-    ok 37 php: ini: blackfire: on
-    ok 38 php: ini: blackfire.server_id
-    ok 39 php: ini: blackfire.server_token
-    ok 40 php: ini: display_errors: off
-    ok 41 php: ini: display_errors: on
-    ok 42 php: ini: display_startup_errors: off
-    ok 43 php: ini: display_startup_errors: on
-    ok 44 php: ini: error_reporting
-    ok 45 php: ini: expose_php: off
-    ok 46 php: ini: expose_php: on
-    ok 47 php: ini: igbinary: on
-    ok 48 php: ini: max_execution_time
-    ok 49 php: ini: max_input_vars
-    ok 50 php: ini: memcached: off
-    ok 51 php: ini: memcached: on
-    ok 52 php: ini: memory_limit
-    ok 53 php: ini: mssql: on
-    ok 54 php: ini: opcache.memory_consumption
-    ok 55 php: ini: opcache: off
-    ok 56 php: ini: opcache: on
-    ok 57 php: ini: post_max_size
-    ok 58 php: ini: realpath_cache_size
-    ok 59 php: ini: realpath_cache_ttl
-    ok 60 php: ini: redis: off
-    ok 61 php: ini: redis: on
-    ok 62 php: ini: short_open_tag: off
-    ok 63 php: ini: short_open_tag: on
-    ok 64 php: ini: timezone
-    ok 65 php: ini: upload_max_filesize
-    ok 66 php: ini: xdebug.idekey
-    ok 67 php: ini: xdebug: off
-    ok 68 php: ini: xdebug: on
-    ok 69 php: ini: xdebug.remote_connect_back: on
-    ok 70 php: ini: xdebug.remote_connect_back: on
-    ok 71 php: ini: xdebug.remote_host
-    ok 72 php: ini: xdebug.remote_port
-    ok 73 php: smtp: off
-    ok 74 php: smtp: on
+    ok 1 php-5.3
+    ok 2 php-5.3: drupal 6
+    ok 3 php-5.3: drupal 6: drush 6
+    ok 4 php-5.3: drupal 6: phpcs
+    ok 5 php-5.3: drupal 6: phpcs: phpcompatibility
+    ok 6 php-5.3: drupal 7
+    ok 7 php-5.3: drupal 7: drush 7
+    ok 8 php-5.3: drupal 7: phpcs
+    ok 9 php-5.3: drupal 7: phpcs: phpcompatibility
+    ok 10 php-5.3: drupal 7: phpcs: drupal
+    ok 11 php-5.3: fpm: pm
+    ok 12 php-5.3: fpm: pm.max_children
+    ok 13 php-5.3: fpm: pm.max_requests
+    ok 14 php-5.3: fpm: pm.max_spare_servers
+    ok 15 php-5.3: fpm: pm.min_spare_servers
+    ok 16 php-5.3: fpm: pm.process_idle_timeout
+    ok 17 php-5.3: fpm: pm.start_servers
+    ok 18 php-5.3: freetds: FREETDS_1_SERVER_NAME
+    ok 19 php-5.3: freetds: FREETDS_1_HOST
+    ok 20 php-5.3: freetds: FREETDS_1_PORT
+    ok 21 php-5.3: freetds: FREETDS_1_TDS_VERSION
+    ok 22 php-5.3: freetds: FREETDS_2_SERVER_NAME
+    ok 23 php-5.3: freetds: FREETDS_2_HOST
+    ok 24 php-5.3: freetds: FREETDS_2_PORT
+    ok 25 php-5.3: freetds: FREETDS_2_TDS_VERSION
+    ok 26 php-5.3: freetds: FREETDS_3_SERVER_NAME
+    ok 27 php-5.3: freetds: FREETDS_3_HOST
+    ok 28 php-5.3: freetds: FREETDS_3_PORT
+    ok 29 php-5.3: freetds: FREETDS_3_TDS_VERSION
+    ok 30 php-5.3: ini: allow_url_fopen: off
+    ok 31 php-5.3: ini: allow_url_fopen: on
+    ok 32 php-5.3: ini: apcu: off
+    ok 33 php-5.3: ini: apcu: on
+    ok 34 php-5.3: ini: apd: off
+    ok 35 php-5.3: ini: apd: on
+    ok 36 php-5.3: ini: blackfire: off
+    ok 37 php-5.3: ini: blackfire: on
+    ok 38 php-5.3: ini: blackfire.server_id
+    ok 39 php-5.3: ini: blackfire.server_token
+    ok 40 php-5.3: ini: display_errors: off
+    ok 41 php-5.3: ini: display_errors: on
+    ok 42 php-5.3: ini: display_startup_errors: off
+    ok 43 php-5.3: ini: display_startup_errors: on
+    ok 44 php-5.3: ini: error_reporting
+    ok 45 php-5.3: ini: expose_php-5.3: off
+    ok 46 php-5.3: ini: expose_php-5.3: on
+    ok 47 php-5.3: ini: igbinary: on
+    ok 48 php-5.3: ini: max_execution_time
+    ok 49 php-5.3: ini: max_input_vars
+    ok 50 php-5.3: ini: memcached: off
+    ok 51 php-5.3: ini: memcached: on
+    ok 52 php-5.3: ini: memory_limit
+    ok 53 php-5.3: ini: mssql: on
+    ok 54 php-5.3: ini: opcache.memory_consumption
+    ok 55 php-5.3: ini: opcache: off
+    ok 56 php-5.3: ini: opcache: on
+    ok 57 php-5.3: ini: post_max_size
+    ok 58 php-5.3: ini: realpath_cache_size
+    ok 59 php-5.3: ini: realpath_cache_ttl
+    ok 60 php-5.3: ini: redis: off
+    ok 61 php-5.3: ini: redis: on
+    ok 62 php-5.3: ini: short_open_tag: off
+    ok 63 php-5.3: ini: short_open_tag: on
+    ok 64 php-5.3: ini: timezone
+    ok 65 php-5.3: ini: upload_max_filesize
+    ok 66 php-5.3: ini: xdebug.idekey
+    ok 67 php-5.3: ini: xdebug: off
+    ok 68 php-5.3: ini: xdebug: on
+    ok 69 php-5.3: ini: xdebug.remote_connect_back: on
+    ok 70 php-5.3: ini: xdebug.remote_connect_back: on
+    ok 71 php-5.3: ini: xdebug.remote_host
+    ok 72 php-5.3: ini: xdebug.remote_port
+    ok 73 php-5.3: smtp: off
+    ok 74 php-5.3: smtp: on
 
 ## License
 

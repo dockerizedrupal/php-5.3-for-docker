@@ -21,7 +21,7 @@ class run::php53 {
   include run::php53::ini::allow_url_fopen
 
   if $php_ini_opcache == "On" {
-    include run::php::ini::opcache
+    include run::php53::ini::opcache
   }
 
   if $php_ini_xdebug == "On" {

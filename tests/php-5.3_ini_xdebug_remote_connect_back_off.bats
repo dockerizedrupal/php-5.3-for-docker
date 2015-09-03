@@ -17,7 +17,7 @@ teardown() {
   docker-compose -f "${DOCKER_COMPOSE_FILE}" rm --force
 }
 
-@test "php-5.3: ini: xdebug.remote_connect_back: on" {
+@test "php-5.3: ini: xdebug.remote_connect_back: off" {
   run docker exec "$(container)" /bin/su - root -lc "cat /usr/local/src/phpfarm/inst/current/etc/conf.d/xdebug.ini | grep 'xdebug.remote_connect_back'"
 
   [ "${status}" -eq 0 ]

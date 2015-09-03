@@ -52,14 +52,14 @@ Using the `docker` command:
       -e USER_ID="" \
       -e GROUP_ID="" \
       -d \
-      dockerizedrupal/php-5.3:1.0.1
+      dockerizedrupal/php-5.3:1.0.2
       
 Using the `docker-compose` command
 
     TMP="$(mktemp -d)" \
       && git clone https://github.com/dockerizedrupal/docker-php-5.3.git "${TMP}" \
       && cd "${TMP}" \
-      && git checkout 1.0.1 \
+      && git checkout 1.0.2 \
       && sudo docker-compose up
 
 ## Build the image
@@ -67,8 +67,8 @@ Using the `docker-compose` command
     TMP="$(mktemp -d)" \
       && git clone https://github.com/dockerizedrupal/docker-php-5.3.git "${TMP}" \
       && cd "${TMP}" \
-      && git checkout 1.0.1 \
-      && sudo docker build -t dockerizedrupal/php-5.3:1.0.1 . \
+      && git checkout 1.0.2 \
+      && sudo docker build -t dockerizedrupal/php-5.3:1.0.2 . \
       && cd -
 
 ## Tests
@@ -146,7 +146,7 @@ Tests are implemented in [Bats: Bash Automated Testing System](https://github.co
     ok 66 php-5.3: ini: xdebug.idekey
     ok 67 php-5.3: ini: xdebug: off
     ok 68 php-5.3: ini: xdebug: on
-    ok 69 php-5.3: ini: xdebug.remote_connect_back: on
+    ok 69 php-5.3: ini: xdebug.remote_connect_back: off
     ok 70 php-5.3: ini: xdebug.remote_connect_back: on
     ok 71 php-5.3: ini: xdebug.remote_host
     ok 72 php-5.3: ini: xdebug.remote_port

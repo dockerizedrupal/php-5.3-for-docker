@@ -3,7 +3,7 @@
 DOCKER_COMPOSE_FILE="${BATS_TEST_DIRNAME}/php-5.3_ini_allow_url_fopen_on.yml"
 
 container() {
-  echo "$(docker-compose -f ${DOCKER_COMPOSE_FILE} ps php-5.3 | grep php-5.3 | awk '{ print $1 }')"
+  echo "$(docker-compose -f ${DOCKER_COMPOSE_FILE} ps php | grep php | awk '{ print $1 }')"
 }
 
 setup() {

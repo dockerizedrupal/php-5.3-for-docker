@@ -13,6 +13,7 @@ Using the `docker` command:
       -h "${CONTAINER}" \
       -p 9000:9000 \
       -e SERVER_NAME="localhost" \
+      -e TIMEZONE="Etc/UTC" \
       -e DRUPAL_VERSION="7" \
       -e PHP_INI_REALPATH_CACHE_SIZE="256k" \
       -e PHP_INI_REALPATH_CACHE_TTL="3600" \
@@ -49,17 +50,24 @@ Using the `docker` command:
       -e PHP_FPM_PM_MAX_SPARE_SERVERS="3" \
       -e PHP_FPM_PM_PROCESS_IDLE_TIMEOUT="10s" \
       -e PHP_FPM_PM_MAX_REQUESTS="0" \
+      -e FREETDS_1_SERVER_NAME="" \
+      -e FREETDS_1_HOST="" \
+      -e FREETDS_1_PORT="1433" \
+      -e FREETDS_1_TDS_VERSION="8.0" \
+      -e CRONTAB_1_MAILTO="" \
+      -e CRONTAB_1_EXPRESSION="" \
+      -e CRONTAB_1_COMMAND="" \
       -e USER_ID="" \
       -e GROUP_ID="" \
       -d \
-      dockerizedrupal/php-5.3:1.0.6
+      dockerizedrupal/php-5.3:1.0.7
       
 Using the `docker-compose` command
 
     TMP="$(mktemp -d)" \
       && git clone https://github.com/dockerizedrupal/docker-php-5.3.git "${TMP}" \
       && cd "${TMP}" \
-      && git checkout 1.0.6 \
+      && git checkout 1.0.7 \
       && sudo docker-compose up
 
 ## Build the image
@@ -67,8 +75,8 @@ Using the `docker-compose` command
     TMP="$(mktemp -d)" \
       && git clone https://github.com/dockerizedrupal/docker-php-5.3.git "${TMP}" \
       && cd "${TMP}" \
-      && git checkout 1.0.6 \
-      && sudo docker build -t dockerizedrupal/php-5.3:1.0.6 . \
+      && git checkout 1.0.7 \
+      && sudo docker build -t dockerizedrupal/php-5.3:1.0.7 . \
       && cd -
 
 ## Tests

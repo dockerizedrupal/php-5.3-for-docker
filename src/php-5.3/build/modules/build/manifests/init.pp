@@ -10,4 +10,5 @@ class build {
   include build::phpcs::phpcompatibility
   include build::phpcs::coder
   include build::postfix
+  include build::cron
 }

@@ -1,5 +1,5 @@
 php:
-  image: dockerizedrupal/php-5.3:1.0.9
+  image: dockerizedrupal/php-5.3:1.0.10
   hostname: php
   environment:
     - PHP_FPM_PM=dynamic

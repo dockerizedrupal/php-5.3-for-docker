@@ -9,7 +9,7 @@ container() {
 setup() {
   docker-compose -f "${DOCKER_COMPOSE_FILE}" up -d
 
-  sleep 10
+  sleep 20
 }
 
 teardown() {
@@ -18,7 +18,7 @@ teardown() {
 }
 
 @test "php-5.3: ini: blackfire.server_id" {
-  run docker exec "$(container)" /bin/su - root -lc "cat /usr/local/src/phpfarm/inst/current/etc/conf.d/blackfire.ini | grep 'blackfire.server_id'"
+  run docker exec "$(container)" /bin/su - root -mc "cat /usr/local/src/phpfarm/inst/current/etc/conf.d/blackfire.ini | grep 'blackfire.server_id'"
 
   [ "${status}" -eq 0 ]
   [[ "${output}" == *"d8108598-7a7a-4c5e-8f03-d0bccadc0931"* ]]

@@ -1,9 +1,9 @@
 class build::php53 {
   require build::php53::packages
   require build::php53::supervisor
+  require build::php53::logs
   require build::phpfarm
   require build::freetds
-  require build::logs
 
   bash_exec { 'mkdir -p /usr/local/src/phpfarm/inst/php-5.3.29/etc/conf.d': }
 

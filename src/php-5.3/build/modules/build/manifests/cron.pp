@@ -1,3 +1,7 @@
 class build::cron {
-  require build::cron::supervisor
+  file { '/var/log/cron.log':
+    ensure => link,
+    target => '/dev/stdout',
+    force => true
+  }
 }

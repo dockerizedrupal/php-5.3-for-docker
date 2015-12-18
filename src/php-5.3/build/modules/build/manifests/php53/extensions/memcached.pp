@@ -1,6 +1,6 @@
-class build::php53::extension::memcached {
+class build::php53::extensions::memcached {
   require build::php53
-  require build::php53::extension::igbinary
+  require build::php53::extensions::igbinary
 
   file { '/tmp/libmemcached-1.0.18.tar.gz':
     ensure => present,

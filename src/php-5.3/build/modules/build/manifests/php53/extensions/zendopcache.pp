@@ -1,4 +1,4 @@
-class build::php53::extension::zendopcache {
+class build::php53::extensions::zendopcache {
   require build::php53
 
   file { '/tmp/zendopcache-7.0.3.tgz':

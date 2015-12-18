@@ -1,4 +1,4 @@
-class build::php53::extension::apd {
+class build::php53::extensions::apd {
   require build::php53
 
   file { '/tmp/apd-1.0.1.tgz':

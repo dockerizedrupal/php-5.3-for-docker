@@ -61,21 +61,22 @@ This project is part of the [Dockerized Drupal](https://dockerizedrupal.com/) in
       -e FREETDS_1_HOST="" \
       -e FREETDS_1_PORT="1433" \
       -e FREETDS_1_TDS_VERSION="8.0" \
+      -e FREETDS_1_CLIENT_CHARSET="UTF-8" \
       -e CRONTAB_1_MAILTO="" \
       -e CRONTAB_1_EXPRESSION="" \
       -e CRONTAB_1_COMMAND="" \
       -e USER_ID="" \
       -e GROUP_ID="" \
       -d \
-      dockerizedrupal/php-5.3:1.2.2
+      dockerizedrupal/php-5.3:1.2.3
 
 ## Build the image
 
     TMP="$(mktemp -d)" \
       && git clone https://github.com/dockerizedrupal/docker-php-5.3.git "${TMP}" \
       && cd "${TMP}" \
-      && git checkout 1.2.2 \
-      && sudo docker build -t dockerizedrupal/php-5.3:1.2.2 . \
+      && git checkout 1.2.3 \
+      && sudo docker build -t dockerizedrupal/php-5.3:1.2.3 . \
       && cd -
 
 ## Changing the container behaviour on runtime through environment variables

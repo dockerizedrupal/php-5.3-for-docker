@@ -347,7 +347,7 @@ pm.max_requests = <%= @php_fpm_pm_max_requests %>
 ; Note: on highloaded environement, this can cause some delay in the page
 ; process time (several ms).
 ; Default Value: no
-;catch_workers_output = yes
+catch_workers_output = yes
 
 ; Limits the extensions of the main script FPM will allow to parse. This can
 ; prevent configuration mistakes on the web server side. You should only limit
@@ -385,8 +385,4 @@ pm.max_requests = <%= @php_fpm_pm_max_requests %>
 
 ; Default Value: nothing is defined by default except the values in php.ini and
 ;                specified at startup with the -d argument
-;php_admin_value[sendmail_path] = /usr/sbin/sendmail -t -i -f www@my.domain.com
-;php_flag[display_errors] = off
-php_admin_value[error_log] = /var/log/fpm-php/error.log
 php_admin_flag[log_errors] = on
-;php_admin_value[memory_limit] = 32M

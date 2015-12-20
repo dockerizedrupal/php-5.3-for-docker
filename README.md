@@ -76,7 +76,7 @@ This project is part of the [Dockerized Drupal](https://dockerizedrupal.com/) in
       -e USER_ID="" \
       -e GROUP_ID="" \
       -d \
-      dockerizedrupal/php-5.3:1.2.3
+      dockerizedrupal/php-5.3:1.2.4
 
     CONTAINER="apache" && sudo docker run \
       --name "${CONTAINER}" \
@@ -93,8 +93,8 @@ This project is part of the [Dockerized Drupal](https://dockerizedrupal.com/) in
     TMP="$(mktemp -d)" \
       && git clone https://github.com/dockerizedrupal/docker-php-5.3.git "${TMP}" \
       && cd "${TMP}" \
-      && git checkout 1.2.3 \
-      && sudo docker build -t dockerizedrupal/php-5.3:1.2.3 . \
+      && git checkout 1.2.4 \
+      && sudo docker build -t dockerizedrupal/php-5.3:1.2.4 . \
       && cd -
 
 ## Changing the container behaviour on runtime through environment variables

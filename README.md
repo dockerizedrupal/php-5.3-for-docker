@@ -6,10 +6,17 @@ This project is part of the [Dockerized Drupal](https://dockerizedrupal.com/) in
 
 ## Run the container
 
+    CONTAINER="apache-data" && sudo docker run \
+      --name "${CONTAINER}" \
+      -h "${CONTAINER}" \
+      -v $(pwd):/apache/data \
+      --entrypoint /bin/echo \
+      dockerizedrupal/apache-2.4:1.2.0 "Data-only container for Apache."
+      
     CONTAINER="php" && sudo docker run \
       --name "${CONTAINER}" \
       -h "${CONTAINER}" \
-      -p 9000:9000 \
+      --volumes-from apache-data \
       -e SERVER_NAME="localhost" \
       -e TIMEZONE="Etc/UTC" \
       -e DRUPAL_VERSION="7" \
@@ -71,6 +78,16 @@ This project is part of the [Dockerized Drupal](https://dockerizedrupal.com/) in
       -d \
       dockerizedrupal/php-5.3:1.2.3
 
+    CONTAINER="apache" && sudo docker run \
+      --name "${CONTAINER}" \
+      -h "${CONTAINER}" \
+      -p 80:80 \
+      -p 443:443 \
+      --volumes-from apache-data \
+      --link php:php \
+      -d \
+      dockerizedrupal/apache-2.4:1.2.0
+      
 ## Build the image
 
     TMP="$(mktemp -d)" \

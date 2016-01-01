@@ -1,8 +1,8 @@
+> **Notice:** *This project is part of the [Dockerized Drupal](https://dockerizedrupal.com/) initiative.*
+
 # docker-php-5.3
 
 A Docker image for [PHP](http://php.net/) version 5.3 that runs PHP in FPM (FastCGI Process Manager) mode.
-
-This project is part of the [Dockerized Drupal](https://dockerizedrupal.com/) initiative.
 
 ## Run the container
 

@@ -371,3 +371,9 @@ for VARIABLE in $(env); do
     export "FACTER_${FREETDS_CLIENT_CHARSET}=${!FREETDS_CLIENT_CHARSET}"
   fi
 done
+
+if [ -z "${CRON}" ]; then
+  CRON="On"
+fi
+
+export FACTER_CRON="${CRON}"

@@ -77,7 +77,7 @@ A Docker image for [PHP](http://php.net/) version 5.3 that runs PHP in FPM (Fast
       -e USER_ID="" \
       -e GROUP_ID="" \
       -d \
-      dockerizedrupal/php-5.3:1.2.6
+      dockerizedrupal/php-5.3:1.2.7
 
     CONTAINER="apache" && sudo docker run \
       --name "${CONTAINER}" \
@@ -94,8 +94,8 @@ A Docker image for [PHP](http://php.net/) version 5.3 that runs PHP in FPM (Fast
     TMP="$(mktemp -d)" \
       && git clone https://github.com/dockerizedrupal/docker-php-5.3.git "${TMP}" \
       && cd "${TMP}" \
-      && git checkout 1.2.6 \
-      && sudo docker build -t dockerizedrupal/php-5.3:1.2.6 . \
+      && git checkout 1.2.7 \
+      && sudo docker build -t dockerizedrupal/php-5.3:1.2.7 . \
       && cd -
 
 ## Changing the container behaviour on runtime through environment variables

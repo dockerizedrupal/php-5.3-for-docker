@@ -38,7 +38,7 @@ teardown() {
   run docker exec "$(container)" /bin/su - root -mc "drush --version"
 
   [ "${status}" -eq 0 ]
-  [[ "${output}" == *"7.2.0"* ]]
+  [[ "${output}" == *"7.3.0"* ]]
 }
 
 @test "php-5.3: drupal 7: phpcs" {

@@ -12,6 +12,8 @@ configoptions="--with-libdir=/lib/x86_64-linux-gnu \
   --enable-mbstring \
   --enable-zip \
   --enable-pcntl \
+  --with-pgsql \
+  --with-pdo-pgsql \
   --with-curl \
   --with-gd \
   --with-jpeg-dir=/usr \

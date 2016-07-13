@@ -35,4 +35,5 @@ configoptions="--with-libdir=/lib/x86_64-linux-gnu \
   --with-config-file-scan-dir=/usr/local/src/phpfarm/inst/php-5.3.29/etc/conf.d \
   --with-mssql=/usr/local/freetds \
   --with-readline \
+  --with-freetype-dir \
 "
